@@ -15,22 +15,22 @@ class PlaceSeeder extends Seeder
     {
         $places = [
             [
-                'name' => 'Jill Valentine',
+                'name' => 'Safe Room',
                 'city' => 'Raccoon City',
                 'state' => 'Capcom',
             ],
             [
-                'name' => 'James Sunderland',
+                'name' => 'Observation Deck',
                 'city' => 'Silent Hill',
                 'state' => 'Konami',
             ],
             [
-                'name' => 'Bruce Wayne',
+                'name' => 'Monarch Theatre',
                 'city' => 'Gotham City',
                 'state' => 'DC Comics',
             ],
             [
-                'name' => 'Terry Bogard',
+                'name' => 'The West Side',
                 'city' => 'Metro City',
                 'state' => 'SNK',
             ]

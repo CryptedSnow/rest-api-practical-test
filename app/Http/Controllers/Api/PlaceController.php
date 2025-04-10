@@ -87,7 +87,7 @@ class PlaceController extends Controller
         if (!$place) {
             return response()->json(['message' => 'Place ID not found to delete.'], 404);
         }
-        $place_name = $place->city;
+        $place_name = $place->name;
         PlaceModel::where('id', $id)->delete();
         return response()->json(['message' => "$place_name was deleted."], 200);
     }

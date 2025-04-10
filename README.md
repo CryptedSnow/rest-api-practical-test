@@ -75,8 +75,8 @@ If you have followed the instructions above, you need use some API platform to p
 [
     {
         "id": 1,
-        "name": "Jill Valentine",
-        "slug": "jill-valentine",
+        "name": "Safe Room",
+        "slug": "safe-room",
         "state": "Capcom",
         "city": "Raccoon City",
         "created_at": null,
@@ -84,8 +84,8 @@ If you have followed the instructions above, you need use some API platform to p
     },
     {
         "id": 2,
-        "name": "James Sunderland",
-        "slug": "james-sunderland",
+        "name": "Observation Deck",
+        "slug": "observation-deck",
         "state": "Konami",
         "city": "Silent Hill",
         "created_at": null,
@@ -93,8 +93,8 @@ If you have followed the instructions above, you need use some API platform to p
     },
     {
         "id": 3,
-        "name": "Bruce Wayne",
-        "slug": "bruce-wayne",
+        "name": "Monarch Theatre",
+        "slug": "monarch-theatre",
         "state": "DC Comics",
         "city": "Gotham City",
         "created_at": null,
@@ -102,8 +102,8 @@ If you have followed the instructions above, you need use some API platform to p
     },
     {
         "id": 4,
-        "name": "Terry Bogard",
-        "slug": "terry-bogard",
+        "name": "The West Side",
+        "slug": "the-west-side",
         "state": "SNK",
         "city": "Metro City",
         "created_at": null,
@@ -124,18 +124,18 @@ Case you don't run the seeders the endpoint response will be:
 ```
 // JSON Content
 {
-    "name": "Sonic Hedgehog",
-    "city": "Green Hill",
-    "state": "SEGA"
+    "name": "Gold Saucer",
+    "city": "Final Fantasy VII",
+    "state": "Square Enix"
 }
 
 // Response - Status: 201 Created
 {
     "id": 5,
-    "name": "Sonic Hedgehog",
-    "slug": "sonic-hedgehog",
-    "city": "Green Hill",
-    "state": "SEGA",
+    "name": "Gold Saucer",
+    "slug": "gold-saucer",
+    "city": "Final Fantasy VII",
+    "state": "Square Enix",
     "updated_at": "2025-04-09T22:09:51.000000Z",
     "created_at": "2025-04-09T22:09:51.000000Z",
 }
@@ -147,26 +147,26 @@ Case you don't run the seeders the endpoint response will be:
 // Response - Status: 200 OK
 {
     "id": 5,
-    "name": "Sonic Hedgehog",
-    "slug": "sonic-hedgehog",
-    "city": "Green Hill",
-    "state": "SEGA",
+    "name": "Gold Saucer",
+    "slug": "gold-saucer",
+    "city": "Final Fantasy VII",
+    "state": "Square Enix",
     "updated_at": "2025-04-09T22:09:51.000000Z",
     "created_at": "2025-04-09T22:09:51.000000Z",
 }
 ```
 
 **GET: localhost:8000/api/place-search?name=**
-- You need change **name=** for **name=Sonic**
+- You need change **name=** for **name=Gold**
 ```
 // Response - Status: 200 OK
 [
     {
         "id": 5,
-        "name": "Sonic Hedgehog",
-        "slug": "sonic-hedgehog",
-        "city": "Green Hill",
-        "state": "SEGA",
+        "name": "Gold Saucer",
+        "slug": "gold-saucer",
+        "city": "Final Fantasy VII",
+        "state": "Square Enix",
         "updated_at": "2025-04-09T22:09:51.000000Z",
         "created_at": "2025-04-09T22:09:51.000000Z",
     }
@@ -178,18 +178,18 @@ Case you don't run the seeders the endpoint response will be:
 ```
 // JSON Content
 {
-    "name": "Sonic Hedgehog",
-    "city": "Green Hill Zone", // Changing Green Hill to Green Hill Zone
-    "state": "SEGA"
+    "name": "Gold Saucer",
+    "city": "Final Fantasy VII Rebirth", // CHanging Final Fantasy VII to Final Fantasy VII Rebirth
+    "state": "Square Enix"
 }
 
 // Response - Status: 200 OK
 {
     "id": 5,
-    "name": "Sonic Hedgehog",
-    "slug": "sonic-hedgehog",
-    "state": "SEGA",
-    "city": "Green Hill Zone",
+    "name": "Gold Saucer",
+    "slug": "gold-saucer",
+    "city": "Final Fantasy VII Rebirth",
+    "state": "Square Enix",
     "created_at": "2025-04-09T22:09:51.000000Z",
     "updated_at": "2025-04-09T22:25:17.000000
 }
@@ -200,6 +200,6 @@ Case you don't run the seeders the endpoint response will be:
 ```
 // Response - Status: 200 OK
 {
-    "message": "Green Hill Zone was deleted."
+    "message": "Gold Saucer was deleted."
 }
 ```
