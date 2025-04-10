@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class PlaceSeeder extends Seeder
 {
@@ -35,9 +36,10 @@ class PlaceSeeder extends Seeder
                 'state' => 'Capcom',
             ]
         ];
-
         $places = array_map(function ($place) {
             $place['slug'] = Str::slug($place['name']);
+            $place['created_at'] = Carbon::now();
+            $place['updated_at'] = Carbon::now();
             return $place;
         }, $places);
 

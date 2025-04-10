@@ -26,7 +26,7 @@ Step N°2 - In `.env` file set the following snippet to connect the application 
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=database_name
+DB_DATABASE=rest-api-practical-test
 DB_USERNAME=postgres
 DB_PASSWORD=
 ```
@@ -79,8 +79,8 @@ If you have followed the instructions above, you need use some API platform to p
         "slug": "safe-room",
         "state": "Capcom",
         "city": "Raccoon City",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
     },
     {
         "id": 2,
@@ -88,8 +88,8 @@ If you have followed the instructions above, you need use some API platform to p
         "slug": "observation-deck",
         "state": "Konami",
         "city": "Silent Hill",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
     },
     {
         "id": 3,
@@ -97,8 +97,8 @@ If you have followed the instructions above, you need use some API platform to p
         "slug": "monarch-theatre",
         "state": "DC Comics",
         "city": "Gotham City",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
     },
     {
         "id": 4,
@@ -106,8 +106,8 @@ If you have followed the instructions above, you need use some API platform to p
         "slug": "the-west-side",
         "state": "Capcom",
         "city": "Metro City",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
     }
 ]
 ```
