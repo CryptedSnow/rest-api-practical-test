@@ -136,8 +136,8 @@ Case you don't run the seeders the endpoint response will be:
     "slug": "gold-saucer",
     "city": "Final Fantasy VII",
     "state": "Square Enix",
-    "updated_at": "2025-04-09T22:09:51.000000Z",
-    "created_at": "2025-04-09T22:09:51.000000Z",
+    "created_at": "10-04-2025 08:36:02",
+    "updated_at": "10-04-2025 08:36:02"
 }
 ```
 
@@ -151,8 +151,8 @@ Case you don't run the seeders the endpoint response will be:
     "slug": "gold-saucer",
     "city": "Final Fantasy VII",
     "state": "Square Enix",
-    "updated_at": "2025-04-09T22:09:51.000000Z",
-    "created_at": "2025-04-09T22:09:51.000000Z",
+    "created_at": "10-04-2025 08:36:02",
+    "updated_at": "10-04-2025 08:36:02"
 }
 ```
 
@@ -167,8 +167,8 @@ Case you don't run the seeders the endpoint response will be:
         "slug": "gold-saucer",
         "city": "Final Fantasy VII",
         "state": "Square Enix",
-        "updated_at": "2025-04-09T22:09:51.000000Z",
-        "created_at": "2025-04-09T22:09:51.000000Z",
+        "created_at": "10-04-2025 08:36:02",
+        "updated_at": "10-04-2025 08:36:02"
     }
 ]
 ```
@@ -190,8 +190,8 @@ Case you don't run the seeders the endpoint response will be:
     "slug": "gold-saucer",
     "city": "Final Fantasy VII Rebirth",
     "state": "Square Enix",
-    "created_at": "2025-04-09T22:09:51.000000Z",
-    "updated_at": "2025-04-09T22:25:17.000000
+    "created_at": "10-04-2025 08:36:02",
+    "updated_at": "10-04-2025 08:38:07"
 }
 ```
 

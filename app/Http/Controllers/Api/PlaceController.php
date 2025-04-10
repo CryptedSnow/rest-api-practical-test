@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\PlaceModel;
+use App\Http\Resources\PlaceResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ class PlaceController extends Controller
         if ($places->isEmpty()) {
             return response()->json(['message' => 'No places found.'], 404);
         }
-        return response()->json($places, 200);
+        return PlaceResource::collection($places);
     }
 
     public function store(Request $request)
@@ -35,7 +36,7 @@ class PlaceController extends Controller
                 'state' => trim((string) $validations['state']),
             ];
             $place = PlaceModel::create($treated_data);
-            return response()->json($place, 201);
+            return (new PlaceResource($place))->response()->setStatusCode(201);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
         } catch (\Exception $e) {
@@ -49,7 +50,7 @@ class PlaceController extends Controller
         if (!$place) {
             return response()->json(['message' => 'Place ID not found to show.'], 404);
         }
-        return response()->json($place, 200);
+        return new PlaceResource($place);
     }
 
     public function update(Request $request, $id)
@@ -72,7 +73,7 @@ class PlaceController extends Controller
                 'state' => trim((string) $validations['state']),
             ];
             $place->update($treated_data);
-            return response()->json($place, 200);
+            return new PlaceResource($place);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
         } catch (\Exception $e) {
@@ -101,7 +102,7 @@ class PlaceController extends Controller
         if ($places->isEmpty()) {
             return response()->json(['message' => "No places found using the name $name."], 404);
         }
-        return response()->json($places, 200);
+        return PlaceResource::collection($places);
     }
 
 }
