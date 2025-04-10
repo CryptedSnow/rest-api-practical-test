@@ -179,7 +179,7 @@ Case you don't run the seeders the endpoint response will be:
 // JSON Content
 {
     "name": "Gold Saucer",
-    "city": "Final Fantasy VII Rebirth", // CHanging Final Fantasy VII to Final Fantasy VII Rebirth
+    "city": "Final Fantasy VII Rebirth", // Final Fantasy VII to Final Fantasy VII Rebirth
     "state": "Square Enix"
 }
 
@@ -234,14 +234,65 @@ Step N°1 - In ```.env``` file set the following snippet to connect the applicat
 http://localhost:5050
 ```
 
+You will see:
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/01.png)
+
+Login:
 ```
 email: admin@admin.com
 password: admin
 ```
 
+4 - Using the correct credentials, the dashboard is available.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
+
+5 - ```Servers -> Register -> Server```
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/03.png)
+
+6 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/04.png)
+
+7 - On ```Connection``` tab, you need set values on following fields
+- Host name/address: ```pgsql```
+- Port: ```5432```
+- Maintenance database: ```postgres```
+- Username: ```postgres```
+- Password: ```secret```
+
+Finally, ckick on ```Save``` button.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/05.png)
+
+8 - The ```test-postgres``` server has been created.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/06.png)
+
+9 - ```test-postgres -> Database -> rest-api-practical-test```
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/07.png)
+
+10 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/08.png)
+
+11 - ```View/Edit Data -> All Rows```
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/09.png)
+
+12 - There are register in ```places``` table to populate the endpoint tests.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/10.png)
+
+13 - If you have doubt about the working of Laravel from service Docker, you can access:
+
+```
+http://localhost:8080
+```
+
 You will see:
 
-4 - Using the correct credentials, the dashboard is available
-
-
-5 - 
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/11.png)
