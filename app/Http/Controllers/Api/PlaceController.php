@@ -71,9 +71,8 @@ class PlaceController extends Controller
                 'city' => trim((string) $validations['city']),
                 'state' => trim((string) $validations['state']),
             ];
-            PlaceModel::where('id', $id)->update($treated_data);
-            $updated_place = $place->find($id);
-            return response()->json($updated_place, 200);
+            $place->update($treated_data);
+            return response()->json($place, 200);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
         } catch (\Exception $e) {
@@ -88,8 +87,8 @@ class PlaceController extends Controller
             return response()->json(['message' => 'Place ID not found to delete.'], 404);
         }
         $place_name = $place->name;
-        PlaceModel::where('id', $id)->delete();
-        return response()->json(['message' => "$place_name was deleted."], 200);
+        $place->delete();
+        return response()->json(['message' => "$place_name is deleted."], 200);
     }
 
     public function searchName(Request $request)
