@@ -67,7 +67,7 @@ php artisan serve
 
 ## REST API endpoints
 
-If you have followed the instructions above, you need use some API platform to perfomate the endpoints, you can use [POSTMAN](https://www.postman.com/) for example.
+If you have followed the instructions above, you need use some API platform to perfomate the endpoints, you can use [POSTMAN](https://www.postman.com/) for example. It is necessary install Postman on your local machine to local tests.
 
 **GET: localhost:8000/api/place**
 ```
@@ -203,3 +203,45 @@ Case you don't run the seeders the endpoint response will be:
     "message": "Gold Saucer is deleted."
 }
 ```
+
+## Environments Docker
+
+1 - Install Docker on your machine. Please, check your operational systems the better way to install.
+
+2 - I am using Sails to create ```docker-compose.yml```. 
+
+
+Step N°1 - In ```docker-compose.yml``` i have done a little change.
+```
+12 | - '${APP_PORT:-8000}:80'
+```
+
+I have changed ``'${APP_PORT:-80}:80' (default value)`` to ``'${APP_PORT:-8000}:80'``. It will facilitate to avoid conflicts involving the host, you don't need configure the container. Like that, the Laravel will run without problems (Mainly the endpoints from REST API).
+
+Step N°1 - In ```.env``` file set the following snippet to connect the application to database container from Docker.
+
+```
+# DB_CONNECTION=pgsql
+# DB_HOST=pgsql
+# DB_PORT=5432
+# DB_DATABASE=rest-api-practical-test
+# DB_USERNAME=postgres
+# DB_PASSWORD=secret
+```
+
+3 - To use ```pgAdmin 4``` services from Docker, you can access:
+```
+http://localhost:5050
+```
+
+```
+email: admin@admin.com
+password: admin
+```
+
+You will see:
+
+4 - Using the correct credentials, the dashboard is available
+
+
+5 - 
