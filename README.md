@@ -9,9 +9,9 @@
 
 ## Attention!
 
-Follow the steps to set the application in your local machine.
+Follow the steps to set the application on your local machine.
 
-Step N°1 - Run the following commands below to install the dependencies (Check the existence of `Composer`, `Node` and `NPM` in your machine).
+Step N°1 - Run the following commands below to install the dependencies (Check the existence of `Composer`, `Node` and `NPM` on your machine).
 
 ```
 composer install 
@@ -104,7 +104,7 @@ If you have followed the instructions above, you need use some API platform to p
         "id": 4,
         "name": "The West Side",
         "slug": "the-west-side",
-        "state": "SNK",
+        "state": "Capcom",
         "city": "Metro City",
         "created_at": null,
         "updated_at": null
@@ -200,6 +200,6 @@ Case you don't run the seeders the endpoint response will be:
 ```
 // Response - Status: 200 OK
 {
-    "message": "Gold Saucer was deleted."
+    "message": "Gold Saucer is deleted."
 }
 ```

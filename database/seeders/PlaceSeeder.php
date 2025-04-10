@@ -32,7 +32,7 @@ class PlaceSeeder extends Seeder
             [
                 'name' => 'The West Side',
                 'city' => 'Metro City',
-                'state' => 'SNK',
+                'state' => 'Capcom',
             ]
         ];
 
