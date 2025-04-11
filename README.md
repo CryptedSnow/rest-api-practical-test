@@ -7,11 +7,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Attention!
+## Local machine
 
 Follow the steps to set the application on your local machine.
 
-Step N°1 - Run the following commands below to install the dependencies (Check the existence of `Composer`, `Node` and `NPM` on your machine).
+Step N°1 - Run the following commands below to install the dependencies (Check the existence of `Composer` on your machine).
 
 ```
 composer install 
@@ -204,32 +204,65 @@ Case you don't run the seeders the endpoint response will be:
 }
 ```
 
-## Environments Docker
+## Environment Docker
 
-1 - Install Docker on your machine. Please, check your operational systems the better way to install.
+1 - Install Docker on your machine. Please, check your operational systems the better way to install. The recommendation is check [Docker](https://docs.docker.com/get-started/get-docker/) documentation.
 
-2 - I am using Sails to create ```docker-compose.yml```. 
+2 - I am using [Laravel Sail](https://laravel.com/docs/12.x/sail) to create ```docker-compose.yml```. Commands using ```docker-compose``` also are compatibles. Once used the command ```composer require laravel/sail --dev``` to install the package, after you need use ```php artisan sail:install``` to publish ```docker-compose.yml```. **Don't run these commands, they have been perfomateds**.
 
-
-Step N°1 - In ```docker-compose.yml``` i have done a little change.
+3 - In ```docker-compose.yml``` I have done a little change in an specific line:
 ```
-12 | - '${APP_PORT:-8000}:80'
+# Line 12
+'${APP_PORT:-8000}:80'
 ```
 
 I have changed ``'${APP_PORT:-80}:80' (default value)`` to ``'${APP_PORT:-8000}:80'``. It will facilitate to avoid conflicts involving the host, you don't need configure the container. Like that, the Laravel will run without problems (Mainly the endpoints from REST API).
 
-Step N°1 - In ```.env``` file set the following snippet to connect the application to database container from Docker.
+4 - In ```.env``` file set the following snippet to connect the application to database container from Docker:
 
 ```
-# DB_CONNECTION=pgsql
-# DB_HOST=pgsql
-# DB_PORT=5432
-# DB_DATABASE=rest-api-practical-test
-# DB_USERNAME=postgres
-# DB_PASSWORD=secret
+DB_CONNECTION=pgsql
+DB_HOST=pgsql
+DB_PORT=5432
+DB_DATABASE=rest-api-practical-test
+DB_USERNAME=postgres
+DB_PASSWORD=secret
 ```
 
-3 - To use ```pgAdmin 4``` services from Docker, you can access:
+5 - Power on the containers:
+```
+php ./vendor/bin/sail up -d
+```
+
+I prefere to shorten the command, you can use:
+```
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+```
+
+Doing this, you don't need write ```./vendor/bin/sail```, you can use a minor command: 
+```
+sail up -d
+```
+
+If you want see the sail commands, use: 
+```
+sail --help
+```
+
+6 - To performate the migrations, you need use the command:
+```
+sail php artisan migrate --seed
+```
+
+Or
+```
+sail php artisan migrate
+sail php db:seed
+```
+
+Remember: If you have done the perfomation of migrations, don't need do again, skip the step 6. 
+
+7 - To use ```pgAdmin 4``` services from Docker, you can access:
 ```
 http://localhost:5050
 ```
@@ -244,19 +277,21 @@ email: admin@admin.com
 password: admin
 ```
 
-4 - Using the correct credentials, the dashboard is available.
+After you have written the credentials, click on ```Login```button.
+
+8 - Using the correct credentials, the dashboard is available.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
 
-5 - ```Servers -> Register -> Server```
+9 - ```Servers -> Register -> Server```
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/03.png)
 
-6 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
+10 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/04.png)
 
-7 - On ```Connection``` tab, you need set values on following fields
+11 - On ```Connection``` tab, you need set values on following fields
 - Host name/address: ```pgsql```
 - Port: ```5432```
 - Maintenance database: ```postgres```
@@ -267,27 +302,27 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/05.png)
 
-8 - The ```test-postgres``` server has been created.
+12 - The ```test-postgres``` server has been created.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/06.png)
 
-9 - ```test-postgres -> Database -> rest-api-practical-test```
+13 - ```test-postgres -> Database -> rest-api-practical-test```
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/07.png)
 
-10 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```
+14 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/08.png)
 
-11 - ```View/Edit Data -> All Rows```
+15 - ```places -> View/Edit Data -> All Rows```
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/09.png)
 
-12 - There are register in ```places``` table to populate the endpoint tests.
+16 - There are register in ```places``` table to populate the endpoint tests.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/10.png)
 
-13 - If you have doubt about the working of Laravel from service Docker, you can access:
+17 - If you have doubt about the working of Laravel from service Docker, you can access:
 
 ```
 http://localhost:8080
@@ -296,3 +331,12 @@ http://localhost:8080
 You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/11.png)
+
+18 - If you power off the containers, use the command
+```
+sail down
+``` 
+
+Now, you can performate the endpoints using environment Docker, follow the [REST API endpoints](#rest-api-endpoints) commands.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/12.png)
