@@ -233,7 +233,7 @@ DB_PASSWORD=secret
 
 5 - Power on the containers:
 ```
-php ./vendor/bin/sail up -d
+./vendor/bin/sail up -d
 ```
 
 I prefere to shorten the command, you can use:
