@@ -11,7 +11,7 @@
 
 Follow the steps to set the application on your local machine.
 
-Step N°1 - Run the following commands below to install the dependencies (Check the existence of `Composer` on your machine).
+1 - Run the following commands below to install the dependencies (Check the existence of `Composer` on your machine).
 
 ```
 composer install 
@@ -21,7 +21,7 @@ composer dump-autoload
 php artisan key:generate
 ```
 
-Step N°2 - In `.env` file set the following snippet to connect the application to your database (In this case, the PostgreSQL).
+2 - In `.env` file set the following snippet to connect the application to your database (In this case, the PostgreSQL).
 ```
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
@@ -31,13 +31,13 @@ DB_USERNAME=postgres
 DB_PASSWORD=
 ```
 
-Step N°3 - Execute the migrations.
+3 - Execute the migrations.
 
 ```
 php artisan migrate
 ```
 
-Step N°4 - Use the commands to perfomate the Seeders.
+4 - Use the commands to perfomate the Seeders.
 
 ```
 php artisan db:seed
@@ -48,12 +48,12 @@ If you want perfomate migrations and seeders at same time.
 php artisan migrate --seed
 ```
 
-Step N°5 - View the migrations status.
+5 - View the migrations status.
 ```
 php artisan migrate:status
 ```
 
-Step N°8 - Run the following command to start Apache to run the application.
+6 - Run the following command to start Apache to run the application.
 ```
 php artisan serve
 ```
@@ -208,7 +208,9 @@ Case you don't run the seeders the endpoint response will be:
 
 1 - Install Docker on your machine. Please, check your operational systems the better way to install. The recommendation is check [Docker](https://docs.docker.com/get-started/get-docker/) documentation.
 
-2 - I am using [Laravel Sail](https://laravel.com/docs/12.x/sail) to create ```docker-compose.yml```. Commands using ```docker-compose``` also are compatibles. Once used the command ```composer require laravel/sail --dev``` to install the package, after you need use ```php artisan sail:install``` to publish ```docker-compose.yml```. **Don't run these commands, they have been perfomateds**.
+2 - I am using [Laravel Sail](https://laravel.com/docs/12.x/sail) to create ```docker-compose.yml```. I have used the command ```composer require laravel/sail --dev``` to install the package, after you need use ```php artisan sail:install``` to publish ```docker-compose.yml```. **Don't run these commands, they have been perfomateds**.
+
+Commands using ```docker-compose``` also are compatibles, you can try this way. 
 
 3 - In ```docker-compose.yml``` I have done a little change in an specific line:
 ```
@@ -271,15 +273,15 @@ You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/01.png)
 
-Login:
+Use the credentials to make login:
 ```
 email: admin@admin.com
 password: admin
 ```
 
-After you have written the credentials, click on ```Login```button.
+After you have written the credentials, click on ```Login``` button.
 
-8 - Using the correct credentials, the dashboard is available.
+8 - Using the correct credentials, the dashboard will be available.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
 
