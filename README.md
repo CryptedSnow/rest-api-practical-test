@@ -212,13 +212,18 @@ Case you don't run the seeders the endpoint response will be:
 
 Commands using ```docker-compose``` also are compatibles, you can try this way. 
 
-3 - In ```docker-compose.yml``` I have done a little change in an specific line:
+3 - In ```docker-compose.yml``` I have done a little change in a specific line:
 ```
 # Line 12
 '${APP_PORT:-8000}:80'
 ```
 
 I have changed ``'${APP_PORT:-80}:80' (default value)`` to ``'${APP_PORT:-8000}:80'``. It will facilitate to avoid conflicts involving the host, you don't need configure the container. Like that, the Laravel will run without problems (Mainly the endpoints from REST API).
+
+To ```.env``` file, I have ensured the port to access Laravel on brownser.
+```
+APP_PORT=8000
+```
 
 4 - In ```.env``` file set the following snippet to connect the application to database container from Docker:
 
