@@ -17,7 +17,7 @@ Route::get('/user', function (Request $request) {
 // POST: localhost:8000/api/place
 // GET: localhost:8080/api/place-search?name=
 // GET: localhost:8000/api/place/id
-// PUT: localhost:8000/api/place/id
+// PUT/PATCH: localhost:8000/api/place/id
 // DELETE: localhost:8000/api/place/id
 
 Route::apiResources([

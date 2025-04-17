@@ -11,12 +11,11 @@
 
 Follow the steps to set the application on your local machine.
 
-1 - Run the following commands below to install the dependencies (Check the existence of `Composer` on your machine).
+1 - Run the following commands below to install the necessary dependencies (Check the existence of `Composer` on your machine).
 
 ```
 composer install 
 cp .env.example .env 
-php artisan cache:clear 
 composer dump-autoload 
 php artisan key:generate
 ```
@@ -31,7 +30,7 @@ DB_USERNAME=postgres
 DB_PASSWORD=
 ```
 
-3 - Execute the migrations.
+3 - Run the migrations.
 
 ```
 php artisan migrate
@@ -122,42 +121,44 @@ Case you don't run the seeders the endpoint response will be:
 
 **POST: localhost:8000/api/place**
 ```
-// JSON Content
+// JSON body
 {
     "name": "Gold Saucer",
-    "city": "Final Fantasy VII",
-    "state": "Square Enix"
+    "state": "Square Enix",
+    "city": "Final Fantasy VII"
 }
+```
 
+```
 // Response - Status: 201 Created
 {
     "id": 5,
     "name": "Gold Saucer",
     "slug": "gold-saucer",
-    "city": "Final Fantasy VII",
     "state": "Square Enix",
+    "city": "Final Fantasy VII",
     "created_at": "10-04-2025 08:36:02",
     "updated_at": "10-04-2025 08:36:02"
 }
 ```
 
 **GET: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you don't run the seeder, use **1**)
+- You need change **id** for **5** (If you don't run the seeder, use **1**).
 ```
 // Response - Status: 200 OK
 {
     "id": 5,
     "name": "Gold Saucer",
     "slug": "gold-saucer",
-    "city": "Final Fantasy VII",
     "state": "Square Enix",
+    "city": "Final Fantasy VII",
     "created_at": "10-04-2025 08:36:02",
     "updated_at": "10-04-2025 08:36:02"
 }
 ```
 
 **GET: localhost:8000/api/place-search?name=**
-- You need change **name=** for **name=Gold**
+- You need change **name=** for **name=Gold**.
 ```
 // Response - Status: 200 OK
 [
@@ -165,8 +166,8 @@ Case you don't run the seeders the endpoint response will be:
         "id": 5,
         "name": "Gold Saucer",
         "slug": "gold-saucer",
-        "city": "Final Fantasy VII",
         "state": "Square Enix",
+        "city": "Final Fantasy VII",
         "created_at": "10-04-2025 08:36:02",
         "updated_at": "10-04-2025 08:36:02"
     }
@@ -174,29 +175,31 @@ Case you don't run the seeders the endpoint response will be:
 ```
 
 **PUT: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you don't run the seeder, use **1**)
+- You need change **id** for **5** (If you don't run the seeder, use **1**).
 ```
-// JSON Content
+// JSON body
 {
     "name": "Gold Saucer",
-    "city": "Final Fantasy VII Rebirth", // Final Fantasy VII to Final Fantasy VII Rebirth
     "state": "Square Enix"
+    "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
 }
+```
 
+```
 // Response - Status: 200 OK
 {
     "id": 5,
     "name": "Gold Saucer",
     "slug": "gold-saucer",
-    "city": "Final Fantasy VII Rebirth",
     "state": "Square Enix",
+    "city": "Final Fantasy VII Rebirth",
     "created_at": "10-04-2025 08:36:02",
     "updated_at": "10-04-2025 08:38:07"
 }
 ```
 
 **DELETE: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you don't run the seeder, use **1**)
+- You need change **id** for **5** (If you don't run the seeder, use **1**).
 ```
 // Response - Status: 200 OK
 {
@@ -225,18 +228,10 @@ To ```.env``` file, I have ensured the port to access Laravel on brownser.
 APP_PORT=8000
 ```
 
-4 - In ```.env``` file set the following snippet to connect the application to database container from Docker:
+4 - Power on the containers:
 
-```
-DB_CONNECTION=pgsql
-DB_HOST=pgsql
-DB_PORT=5432
-DB_DATABASE=rest-api-practical-test
-DB_USERNAME=postgres
-DB_PASSWORD=secret
-```
+**sail command way**
 
-5 - Power on the containers:
 ```
 ./vendor/bin/sail up -d
 ```
@@ -256,20 +251,75 @@ If you want see the sail commands, use:
 sail --help
 ```
 
-6 - To performate the migrations, you need use the command:
+**docker-compose command way**
+```
+docker-compose up -d
+```
+
+5 - Run the following commands below to install the necessary dependencies.
+
+**sail command way**
+
+```
+sail composer install
+sail cp .env.example .env
+sail composer dump-autoload
+sail artisan key:generate
+```
+
+**docker-compose command way**
+
+```
+docker-compose exec laravel.test composer install
+docker-compose exec laravel.test cp .env.example .env
+docker-compose exec laravel.test composer dump-autoload
+docker-compose exec laravel.test artisan key:generate
+```
+
+6 - In ```.env``` file set the following snippet to connect the application to database container from Docker:
+
+```
+DB_CONNECTION=pgsql
+DB_HOST=pgsql
+DB_PORT=5432
+DB_DATABASE=rest-api-practical-test
+DB_USERNAME=postgres
+DB_PASSWORD=secret
+```
+
+7 - To performate the migrations, you need use the command:
+
+**sail command way**
+
 ```
 sail php artisan migrate --seed
 ```
 
+**docker-compose command way**
+
+```
+docker-compose exec laravel.test php artisan migrate --seed
+```
+
 Or
+
+**sail command way**
+
 ```
 sail php artisan migrate
 sail php db:seed
 ```
 
+**docker-compose command way**
+
+```
+docker-compose exec laravel.test php artisan migrate
+docker-compose exec laravel.test php artisan db:seed
+```
+
 Remember: If you have done the perfomation of migrations, don't need do again, skip the step 6. 
 
-7 - To use ```pgAdmin 4``` services from Docker, you can access:
+8 - To use ```pgAdmin 4``` services from Docker, you can access:
 ```
 http://localhost:5050
 ```
@@ -286,19 +336,19 @@ password: admin
 
 After you have written the credentials, click on ```Login``` button.
 
-8 - Using the correct credentials, the dashboard will be available.
+9 - Using the correct credentials, the dashboard will be available.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
 
-9 - ```Servers -> Register -> Server```
+10 - ```Servers -> Register -> Server```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/03.png)
 
-10 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
+11 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/04.png)
 
-11 - On ```Connection``` tab, you need set values on following fields
+12 - On ```Connection``` tab, you need set values on following fields:
 - Host name/address: ```pgsql```
 - Port: ```5432```
 - Maintenance database: ```postgres```
@@ -309,27 +359,27 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/05.png)
 
-12 - The ```test-postgres``` server has been created.
+13 - The ```test-postgres``` server has been created.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/06.png)
 
-13 - ```test-postgres -> Database -> rest-api-practical-test```
+14 - ```test-postgres -> Databases -> rest-api-practical-test```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/07.png)
 
-14 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```
+15 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/08.png)
 
-15 - ```places -> View/Edit Data -> All Rows```
+16 - ```places -> View/Edit Data -> All Rows```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/09.png)
 
-16 - There are register in ```places``` table to populate the endpoint tests.
+17 - There are registers in ```places``` table to populate the endpoint tests.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/10.png)
 
-17 - If you have doubt about the working of Laravel from service Docker, you can access:
+18 - If you have doubt about the working of Laravel from service Docker, you can access:
 
 ```
 http://localhost:8080
@@ -339,10 +389,18 @@ You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/11.png)
 
-18 - If you power off the containers, use the command
+19 - If you power off the containers, use the command:
+
+**sail command way**
 ```
 sail down
-``` 
+```
+
+**docker-compose way**
+
+```
+docker-compose down
+```
 
 Now, you can performate the endpoints using environment Docker, follow the [REST API endpoints](#rest-api-endpoints) commands.
 

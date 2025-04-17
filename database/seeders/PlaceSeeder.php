@@ -17,25 +17,26 @@ class PlaceSeeder extends Seeder
         $places = [
             [
                 'name' => 'Safe Room',
-                'city' => 'Raccoon City',
                 'state' => 'Capcom',
+                'city' => 'Raccoon City',
             ],
             [
                 'name' => 'Observation Deck',
-                'city' => 'Silent Hill',
                 'state' => 'Konami',
+                'city' => 'Silent Hill',
             ],
             [
                 'name' => 'Monarch Theatre',
-                'city' => 'Gotham City',
                 'state' => 'DC Comics',
+                'city' => 'Gotham City',
             ],
             [
                 'name' => 'The West Side',
-                'city' => 'Metro City',
                 'state' => 'Capcom',
+                'city' => 'Metro City',
             ]
         ];
+
         $places = array_map(function ($place) {
             $place['slug'] = Str::slug($place['name']);
             $place['created_at'] = Carbon::now();

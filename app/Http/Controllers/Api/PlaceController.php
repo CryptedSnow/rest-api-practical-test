@@ -25,15 +25,15 @@ class PlaceController extends Controller
         try {
             $validations = $request->validate([
                 'name' => 'required',
-                'city' => 'required',
                 'state' => 'required',
+                'city' => 'required',
             ]);
             $validations['slug'] = Str::slug($validations['name']);
             $treated_data = [
                 'name' => trim((string) $validations['name']),
                 'slug' => trim((string) $validations['slug']),
-                'city' => trim((string) $validations['city']),
                 'state' => trim((string) $validations['state']),
+                'city' => trim((string) $validations['city']),
             ];
             $place = PlaceModel::create($treated_data);
             return (new PlaceResource($place))->response()->setStatusCode(201);
@@ -62,15 +62,15 @@ class PlaceController extends Controller
             }
             $validations = $request->validate([
                 'name' => 'required',
-                'city' => 'required',
                 'state' => 'required',
+                'city' => 'required',
             ]);
             $validations['slug'] = Str::slug($validations['name']);
             $treated_data = [
                 'name' => trim((string) $validations['name']),
                 'slug' => trim((string) $validations['slug']),
-                'city' => trim((string) $validations['city']),
                 'state' => trim((string) $validations['state']),
+                'city' => trim((string) $validations['city']),
             ];
             $place->update($treated_data);
             return new PlaceResource($place);

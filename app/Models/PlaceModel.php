@@ -14,7 +14,7 @@ class PlaceModel extends Model
     protected $fillable = [
         'name',
         'slug',
-        'city',
         'state',
+        'city',
     ];
 }

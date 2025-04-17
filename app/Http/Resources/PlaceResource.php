@@ -18,8 +18,8 @@ class PlaceResource extends JsonResource
             'id'         => $this->id,
             'name'       => $this->name,
             'slug'       => $this->slug,
-            'city'       => $this->city,
             'state'      => $this->state,
+            'city'       => $this->city,
             'created_at' => optional($this->created_at)->timezone('America/Sao_Paulo')->format('d-m-Y H:i:s'),
             'updated_at' => optional($this->updated_at)->timezone('America/Sao_Paulo')->format('d-m-Y H:i:s'),
         ];
