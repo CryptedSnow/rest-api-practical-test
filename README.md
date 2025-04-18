@@ -111,7 +111,7 @@ If you have followed the instructions above, you need use some API platform to p
 ]
 ```
 
-Case you don't run the seeders the endpoint response will be:
+Case you didn't run the seeders the endpoint response will be:
 ```
 // Response - Status: 404 Not Found
 {
@@ -143,7 +143,7 @@ Case you don't run the seeders the endpoint response will be:
 ```
 
 **GET: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you don't run the seeder, use **1**).
+- You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // Response - Status: 200 OK
 {
@@ -175,7 +175,7 @@ Case you don't run the seeders the endpoint response will be:
 ```
 
 **PUT: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you don't run the seeder, use **1**).
+- You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // JSON body
 {
@@ -199,7 +199,7 @@ Case you don't run the seeders the endpoint response will be:
 ```
 
 **DELETE: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you don't run the seeder, use **1**).
+- You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // Response - Status: 200 OK
 {
@@ -221,7 +221,7 @@ Commands using ```docker-compose``` also are compatibles, you can try this way.
 '${APP_PORT:-8000}:80'
 ```
 
-I have changed ``'${APP_PORT:-80}:80' (default value)`` to ``'${APP_PORT:-8000}:80'``. It will facilitate to avoid conflicts involving the host, you don't need configure the container. Like that, the Laravel will run without problems (Mainly the endpoints from REST API).
+I have changed ``'${APP_PORT:-80}:80' (default value)`` to ``'${APP_PORT:-8000}:80'``. It will facilitate to avoid conflicts involving the host. Like that, the Laravel will run without problems (Mainly the endpoints from REST API).
 
 To ```.env``` file, I have ensured the port to access Laravel on brownser.
 ```
