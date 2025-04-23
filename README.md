@@ -7,6 +7,14 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Files of importancy
+- [Places (migration)](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/migrations/2025_04_09_170109_create_places_table.php)
+- [PlaceSeeder](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/seeders/PlaceSeeder.php)
+    - [DatabaseSeeder](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/seeders/DatabaseSeeder.php)
+- [api.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/routes/api.php)
+- [PlaceModel.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Models/PlaceModel.php)
+- [PlaceController.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Http/Controllers/Api/PlaceController.php)
+
 ## Local machine
 
 Follow the steps to set the application on your local machine.
@@ -56,164 +64,12 @@ php artisan migrate:status
 ```
 php artisan serve
 ```
-## Files of importancy
-- [Places (migration)](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/migrations/2025_04_09_170109_create_places_table.php)
-- [PlaceSeeder](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/seeders/PlaceSeeder.php)
-    - [DatabaseSeeder](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/seeders/DatabaseSeeder.php)
-- [api.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/routes/api.php)
-- [PlaceModel.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Models/PlaceModel.php)
-- [PlaceController.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Http/Controllers/Api/PlaceController.php)
 
-## REST API endpoints
+## Docker environment
 
-If you have followed the instructions above, you need use some API platform to perfomate the endpoints, you can use [POSTMAN](https://www.postman.com/) for example. It is necessary install Postman on your local machine to local tests.
+First, install Docker on your machine. Please, check your operational systems the better way to install. The recommendation is check [Docker](https://docs.docker.com/get-started/get-docker/) documentation.
 
-**GET: localhost:8000/api/place**
-```
-// Response - Status: 200 OK
-[
-    {
-        "id": 1,
-        "name": "Safe Room",
-        "slug": "safe-room",
-        "state": "Capcom",
-        "city": "Raccoon City",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
-    },
-    {
-        "id": 2,
-        "name": "Observation Deck",
-        "slug": "observation-deck",
-        "state": "Konami",
-        "city": "Silent Hill",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
-    },
-    {
-        "id": 3,
-        "name": "Monarch Theatre",
-        "slug": "monarch-theatre",
-        "state": "DC Comics",
-        "city": "Gotham City",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
-    },
-    {
-        "id": 4,
-        "name": "The West Side",
-        "slug": "the-west-side",
-        "state": "Capcom",
-        "city": "Metro City",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
-    }
-]
-```
-
-Case you didn't run the seeders the endpoint response will be:
-```
-// Response - Status: 404 Not Found
-{
-    "message": "No places found."
-}
-```
-
-**POST: localhost:8000/api/place**
-```
-// JSON body
-{
-    "name": "Gold Saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII"
-}
-```
-
-```
-// Response - Status: 201 Created
-{
-    "id": 5,
-    "name": "Gold Saucer",
-    "slug": "gold-saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII",
-    "created_at": "10-04-2025 08:36:02",
-    "updated_at": "10-04-2025 08:36:02"
-}
-```
-
-**GET: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you didn't run the seeder, use **1**).
-```
-// Response - Status: 200 OK
-{
-    "id": 5,
-    "name": "Gold Saucer",
-    "slug": "gold-saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII",
-    "created_at": "10-04-2025 08:36:02",
-    "updated_at": "10-04-2025 08:36:02"
-}
-```
-
-**GET: localhost:8000/api/place-search?name=**
-- You need change **name=** for **name=Gold**.
-```
-// Response - Status: 200 OK
-[
-    {
-        "id": 5,
-        "name": "Gold Saucer",
-        "slug": "gold-saucer",
-        "state": "Square Enix",
-        "city": "Final Fantasy VII",
-        "created_at": "10-04-2025 08:36:02",
-        "updated_at": "10-04-2025 08:36:02"
-    }
-]
-```
-
-**PUT: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you didn't run the seeder, use **1**).
-```
-// JSON body
-{
-    "name": "Gold Saucer",
-    "state": "Square Enix"
-    "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
-}
-```
-
-```
-// Response - Status: 200 OK
-{
-    "id": 5,
-    "name": "Gold Saucer",
-    "slug": "gold-saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII Rebirth",
-    "created_at": "10-04-2025 08:36:02",
-    "updated_at": "10-04-2025 08:38:07"
-}
-```
-
-**DELETE: localhost:8000/api/place/id**
-- You need change **id** for **5** (If you didn't run the seeder, use **1**).
-```
-// Response - Status: 200 OK
-{
-    "message": "Gold Saucer is deleted."
-}
-```
-
-## Environment Docker
-
-Install Docker on your machine. Please, check your operational systems the better way to install. The recommendation is check [Docker](https://docs.docker.com/get-started/get-docker/) documentation.
-
-I am using [Laravel Sail](https://laravel.com/docs/12.x/sail) to create ```docker-compose.yml```. I have used the command ```composer require laravel/sail --dev``` to install the package, after you need use ```php artisan sail:install``` to publish ```docker-compose.yml```. **Don't run these commands, they have been perfomateds**.
-
-Commands using ```docker-compose``` also are compatibles, you can try this way. 
+I am using [Laravel Sail](https://laravel.com/docs/12.x/sail) to create ```docker-compose.yml```. Commands using ```docker-compose``` also are compatibles, you can try from this way. 
 
 In ```docker-compose.yml``` I have done a little change in a specific line:
 ```
@@ -384,6 +240,149 @@ sail down
 docker-compose down
 ```
 
-Now, you can performate the endpoints using environment Docker, follow the [REST API endpoints](#rest-api-endpoints) commands.
+Now, you can performate the endpoints using environment Docker, follow the REST API endpoint commands.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/12.png)
+
+## REST API endpoints
+
+If you have followed the instructions above, you need use some API platform to perfomate the endpoints, you can use [POSTMAN](https://www.postman.com/) for example. It is necessary install Postman on your local machine to local tests.
+
+**GET: localhost:8000/api/place**
+```
+// Response - Status: 200 OK
+[
+    {
+        "id": 1,
+        "name": "Safe Room",
+        "slug": "safe-room",
+        "state": "Capcom",
+        "city": "Raccoon City",
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
+    },
+    {
+        "id": 2,
+        "name": "Observation Deck",
+        "slug": "observation-deck",
+        "state": "Konami",
+        "city": "Silent Hill",
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
+    },
+    {
+        "id": 3,
+        "name": "Monarch Theatre",
+        "slug": "monarch-theatre",
+        "state": "DC Comics",
+        "city": "Gotham City",
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
+    },
+    {
+        "id": 4,
+        "name": "The West Side",
+        "slug": "the-west-side",
+        "state": "Capcom",
+        "city": "Metro City",
+        "created_at": "10-04-2025 08:33:00",
+        "updated_at": "10-04-2025 08:33:00"
+    }
+]
+```
+
+Case you didn't run the seeders the endpoint response will be:
+```
+// Response - Status: 404 Not Found
+{
+    "message": "No places found."
+}
+```
+
+**POST: localhost:8000/api/place**
+```
+// JSON body
+{
+    "name": "Gold Saucer",
+    "state": "Square Enix",
+    "city": "Final Fantasy VII"
+}
+```
+
+```
+// Response - Status: 201 Created
+{
+    "id": 5,
+    "name": "Gold Saucer",
+    "slug": "gold-saucer",
+    "state": "Square Enix",
+    "city": "Final Fantasy VII",
+    "created_at": "10-04-2025 08:36:02",
+    "updated_at": "10-04-2025 08:36:02"
+}
+```
+
+**GET: localhost:8000/api/place/id**
+- You need change **id** for **5** (If you didn't run the seeder, use **1**).
+```
+// Response - Status: 200 OK
+{
+    "id": 5,
+    "name": "Gold Saucer",
+    "slug": "gold-saucer",
+    "state": "Square Enix",
+    "city": "Final Fantasy VII",
+    "created_at": "10-04-2025 08:36:02",
+    "updated_at": "10-04-2025 08:36:02"
+}
+```
+
+**GET: localhost:8000/api/place-search?name=**
+- You need change **name=** for **name=Gold**.
+```
+// Response - Status: 200 OK
+[
+    {
+        "id": 5,
+        "name": "Gold Saucer",
+        "slug": "gold-saucer",
+        "state": "Square Enix",
+        "city": "Final Fantasy VII",
+        "created_at": "10-04-2025 08:36:02",
+        "updated_at": "10-04-2025 08:36:02"
+    }
+]
+```
+
+**PUT: localhost:8000/api/place/id**
+- You need change **id** for **5** (If you didn't run the seeder, use **1**).
+```
+// JSON body
+{
+    "name": "Gold Saucer",
+    "state": "Square Enix"
+    "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
+}
+```
+
+```
+// Response - Status: 200 OK
+{
+    "id": 5,
+    "name": "Gold Saucer",
+    "slug": "gold-saucer",
+    "state": "Square Enix",
+    "city": "Final Fantasy VII Rebirth",
+    "created_at": "10-04-2025 08:36:02",
+    "updated_at": "10-04-2025 08:38:07"
+}
+```
+
+**DELETE: localhost:8000/api/place/id**
+- You need change **id** for **5** (If you didn't run the seeder, use **1**).
+```
+// Response - Status: 200 OK
+{
+    "message": "Gold Saucer is deleted."
+}
+```
