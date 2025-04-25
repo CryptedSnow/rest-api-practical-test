@@ -15,106 +15,34 @@
 - [PlaceModel.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Models/PlaceModel.php)
 - [PlaceController.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Http/Controllers/Api/PlaceController.php)
 
-## Local machine
-
-Follow the steps to set the application on your local machine.
-
-<a id="composer-intall-command"></a> 1 - Run the following commands below to install the necessary dependencies (Check the existence of `Composer` on your machine).
-
-```
-composer install 
-cp .env.example .env 
-composer dump-autoload 
-php artisan key:generate
-```
-
-2 - In `.env` file set the following snippet to connect the application to your database (In this case, the PostgreSQL).
-```
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=rest-api-practical-test
-DB_USERNAME=postgres
-DB_PASSWORD=
-```
-
-3 - Run the migrations.
-
-```
-php artisan migrate
-```
-
-4 - Use the commands to perfomate the Seeders.
-
-```
-php artisan db:seed
-```
-
-If you want perfomate migrations and seeders at same time.
-```
-php artisan migrate --seed
-```
-
-5 - View the migrations status.
-```
-php artisan migrate:status
-```
-
-6 - Run the following command to start Apache to run the application.
-```
-php artisan serve
-```
-
 ## Docker environment
 
-First, install Docker on your machine. Please, check your operational systems the better way to install. The recommendation is check [Docker](https://docs.docker.com/get-started/get-docker/) documentation.
-
-I am using [Laravel Sail](https://laravel.com/docs/12.x/sail) to create ```docker-compose.yml```. Commands using ```docker-compose``` also are compatibles, you can try from this way. 
-
-In ```docker-compose.yml``` I have done a little change in a specific line:
-```
-# Line 12
-'${APP_PORT:-8000}:80'
-```
-
-I have changed ``'${APP_PORT:-80}:80' (default value)`` to ``'${APP_PORT:-8000}:80'``. It will facilitate to avoid conflicts involving the host. Like that, the Laravel will run without problems (Mainly the endpoints from REST API).
-
-To ```.env``` file, I have ensured the port to access Laravel on brownser.
-```
-APP_PORT=8000
-```
-
-My recomendation that you have done ```composer install``` before that you power on the containers, see the command <a href="#composer-intall-command">here</a>.
-
-1 - Case you have done ```composer install```, power on the containers:
-
-**sail command way**
-
-```
-./vendor/bin/sail up -d
-```
-
-I prefere to shorten the command, you can use:
-```
-alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
-```
-
-Doing this, you don't need write ```./vendor/bin/sail```, you can use a minor command: 
-```
-sail up -d
-```
-
-If you want see the sail commands, use: 
-```
-sail --help
-```
-
-**docker-compose command way**
+1 - Power on the containers:
 ```
 docker-compose up -d
 ```
 
-2 - In ```.env``` file set the following snippet to connect the application to database container from Docker:
+2 - Run the ```composer install``` command:
+```
+docker-compose exec laravel.test composer install
+```
+
+3 - Create ```.env``` file:
+```
+docker-compose exec laravel.test cp .env.example .env  
+```
+
+4 - Update **Composer** autoload file:
+```
+docker-compose exec laravel.test composer dump-autoload 
+```
+
+5 - Generate to ```.env``` file:
+```
+docker-compose exec laravel.test php artisan key:generate
+```
+
+6 - In ```.env``` file set the following snippet to connect the application to database container from **Docker**:
 
 ```
 DB_CONNECTION=pgsql
@@ -125,30 +53,13 @@ DB_USERNAME=postgres
 DB_PASSWORD=secret
 ```
 
-3 - To performate the migrations, you need use the command:
-
-**sail command way**
-
-```
-sail php artisan migrate --seed
-```
-
-**docker-compose command way**
+7 - To performate the migrations, you need use the command:
 
 ```
 docker-compose exec laravel.test php artisan migrate --seed
 ```
 
 Or
-
-**sail command way**
-
-```
-sail php artisan migrate
-sail php db:seed
-```
-
-**docker-compose command way**
 
 ```
 docker-compose exec laravel.test php artisan migrate
@@ -157,7 +68,7 @@ docker-compose exec laravel.test php artisan db:seed
 
 Remember: If you have done the perfomation of migrations, don't need do again, skip the step 6. 
 
-4 - To use ```pgAdmin 4``` services from Docker, you can access:
+8 - To use ```pgAdmin 4``` services from Docker, you can access:
 ```
 http://localhost:5050
 ```
@@ -174,19 +85,19 @@ password: admin
 
 After you have written the credentials, click on ```Login``` button.
 
-5 - Using the correct credentials, the dashboard will be available.
+9 - Using the correct credentials, the dashboard will be available.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
 
-6 - ```Servers -> Register -> Server```.
+10 - ```Servers -> Register -> Server```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/03.png)
 
-7 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
+11 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/04.png)
 
-8 - On ```Connection``` tab, you need set values on following fields:
+12 - On ```Connection``` tab, you need set values on following fields:
 - Host name/address: ```pgsql```
 - Port: ```5432```
 - Maintenance database: ```postgres```
@@ -197,27 +108,27 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/05.png)
 
-9 - The ```test-postgres``` server has been created.
+13 - The ```test-postgres``` server has been created.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/06.png)
 
-10 - ```test-postgres -> Databases -> rest-api-practical-test```.
+14 - ```test-postgres -> Databases -> rest-api-practical-test```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/07.png)
 
-11 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
+15 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/08.png)
 
-12 - ```places -> View/Edit Data -> All Rows```.
+16 - ```places -> View/Edit Data -> All Rows```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/09.png)
 
-13 - There are registers in ```places``` table to populate the endpoint tests.
+17 - There are registers in ```places``` table to populate the endpoint tests.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/10.png)
 
-14 - If you have doubt about the working of Laravel from service Docker, you can access:
+18 - If you have doubt about the working of Laravel from service Docker, you can access:
 
 ```
 http://localhost:8080
@@ -227,14 +138,7 @@ You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/11.png)
 
-15 - If you power off the containers, use the command:
-
-**sail command way**
-```
-sail down
-```
-
-**docker-compose way**
+19 - If you power off the containers, use the command:
 
 ```
 docker-compose down
