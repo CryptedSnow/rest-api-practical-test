@@ -94,10 +94,10 @@ class PlaceController extends Controller
 
     public function searchName(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-        ]);
         $name = $request->input('name');
+        if (!$name) {
+            return response()->json(['message' => "The name field is empty."], 404);
+        }
         $places = PlaceModel::where('name', 'ILIKE', '%' . $name . '%')->get();
         if ($places->isEmpty()) {
             return response()->json(['message' => "No places found using the name $name."], 404);
