@@ -1,8 +1,9 @@
 FROM php:8.3-fpm
 
-WORKDIR /var/www
+# Define o diretório de trabalho
+WORKDIR /var/www/html
 
-# Install dependencies
+# Instala dependências do sistema
 RUN apt-get update && apt-get install -y \
     build-essential \
     libicu-dev \
@@ -10,31 +11,36 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
-    libxml2-dev \
+    libzip-dev \
+    libpq-dev \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle \
     vim \
     unzip \
     git \
-    curl \
-    libzip-dev
+    curl
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath gettext intl gd dom tokenizer
+# Configura a extensão GD com suporte a freetype e jpeg
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
-# Install Composer
+# Instala as extensões PHP necessárias
+RUN docker-php-ext-install pdo_pgsql mbstring zip exif pcntl bcmath gettext intl gd
+
+# Instala o Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add user for Laravel
+# Cria um usuário para rodar o Laravel
 RUN groupadd -g 1000 www && \
     useradd -u 1000 -ms /bin/bash -g www www
 
-# Copy files and set permissions
-COPY --chown=www:www . /var/www
+# Copia os arquivos do projeto e define permissões
+COPY --chown=www:www . /var/www/html
 
+# Define o usuário padrão do container
 USER www
 
 EXPOSE 9000
 
+# Comando padrão do container
 CMD ["php-fpm"]

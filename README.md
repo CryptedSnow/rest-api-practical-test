@@ -68,7 +68,7 @@ docker-compose exec laravel.test php artisan db:seed
 
 Remember: If you have done the perfomation of migrations, don't need do again, skip the step 6. 
 
-8 - To use ```pgAdmin 4``` services from Docker, you can access:
+8 - To use ```pgAdmin``` services from Docker, you can access:
 ```
 http://localhost:5050
 ```
@@ -131,7 +131,7 @@ Finally, ckick on ```Save``` button.
 18 - If you have doubt about the working of Laravel from service Docker, you can access:
 
 ```
-http://localhost:8080
+http://localhost:8000
 ```
 
 You will see:
