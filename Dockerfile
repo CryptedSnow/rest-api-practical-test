@@ -40,6 +40,7 @@ COPY --chown=www:www . /var/www/html
 # Define o usuário padrão do container
 USER www
 
+# Expõe a porta usada pelo PHP-FPM para comunicação com o servidor web (Nginx)
 EXPOSE 9000
 
 # Comando padrão do container
