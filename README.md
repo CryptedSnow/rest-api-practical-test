@@ -35,7 +35,7 @@ docker-compose exec laravel.test composer install
 docker-compose exec laravel.test cp .env.example .env  
 ```
 
-4 - Update **Composer** autoload file:
+4 - Update composer dump-autoload:
 ```
 docker-compose exec laravel.test composer dump-autoload 
 ```
