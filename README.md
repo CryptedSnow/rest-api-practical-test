@@ -57,21 +57,18 @@ DB_PASSWORD=secret
 ```
 
 7 - To performate the migrations, you need use the command:
-
-```
-docker-compose exec laravel.test php artisan migrate --seed
-```
-
-Or
-
 ```
 docker-compose exec laravel.test php artisan migrate
+```
+
+8 - Use the command to perfomate the Seeders:
+```
 docker-compose exec laravel.test php artisan db:seed
 ```
 
 Remember: If you have done the perfomation of migrations, don't need do again, skip the step 6. 
 
-8 - To use ```pgAdmin``` services from Docker, you can access:
+9 - To use ```pgAdmin``` services from Docker, you can access:
 ```
 http://localhost:5050
 ```
@@ -88,19 +85,19 @@ password: admin
 
 After you have written the credentials, click on ```Login``` button.
 
-9 - Using the correct credentials, the dashboard will be available.
+10 - Using the correct credentials, the dashboard will be available.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
 
-10 - ```Servers -> Register -> Server```.
+11 - ```Servers -> Register -> Server```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/03.png)
 
-11 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
+12 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/04.png)
 
-12 - On ```Connection``` tab, you need set values on following fields:
+13 - On ```Connection``` tab, you need set values on following fields:
 - Host name/address: ```pgsql```
 - Port: ```5432```
 - Maintenance database: ```postgres```
@@ -111,27 +108,27 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/05.png)
 
-13 - The ```test-postgres``` server has been created.
+14 - The ```test-postgres``` server has been created.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/06.png)
 
-14 - ```test-postgres -> Databases -> rest-api-practical-test```.
+15 - ```test-postgres -> Databases -> rest-api-practical-test```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/07.png)
 
-15 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
+16 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/08.png)
 
-16 - ```places -> View/Edit Data -> All Rows```.
+17 - ```places -> View/Edit Data -> All Rows```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/09.png)
 
-17 - There are registers in ```places``` table to populate the endpoint tests.
+18 - There are registers in ```places``` table to populate the endpoint tests.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/10.png)
 
-18 - If you have doubt about the working of Laravel from service Docker, you can access:
+19 - If you have doubt about the working of Laravel from service Docker, you can access:
 
 ```
 http://localhost:8000
@@ -141,7 +138,7 @@ You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/11.png)
 
-19 - If you power off the containers, use the command:
+20 - If you power off the containers, use the command:
 
 ```
 docker-compose down
