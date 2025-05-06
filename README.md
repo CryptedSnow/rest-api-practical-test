@@ -27,25 +27,20 @@ docker-compose up -d
 
 2 - Run the ```composer install``` command:
 ```
-docker-compose exec laravel.test composer install
+docker-compose exec app composer install
 ```
 
 3 - Create ```.env``` file:
 ```
-docker-compose exec laravel.test cp .env.example .env  
+docker-compose exec app cp .env.example .env  
 ```
 
-4 - Update composer dump-autoload:
+4 - Generate to ```.env``` file:
 ```
-docker-compose exec laravel.test composer dump-autoload 
-```
-
-5 - Generate to ```.env``` file:
-```
-docker-compose exec laravel.test php artisan key:generate
+docker-compose exec app php artisan key:generate
 ```
 
-6 - In ```.env``` file set the following snippet to connect the application to database container from **Docker**:
+5 - In ```.env``` file set the following snippet to connect the application to database container from **Docker**:
 
 ```
 DB_CONNECTION=pgsql
@@ -56,19 +51,19 @@ DB_USERNAME=postgres
 DB_PASSWORD=secret
 ```
 
-7 - To performate the migrations, you need use the command:
+6 - To performate the migrations, you need use the command:
 ```
-docker-compose exec laravel.test php artisan migrate
+docker-compose exec app php artisan migrate
 ```
 
-8 - Use the command to perfomate the Seeders:
+7 - Use the command to perfomate the Seeders:
 ```
-docker-compose exec laravel.test php artisan db:seed
+docker-compose exec app php artisan db:seed
 ```
 
 Remember: If you have done the perfomation of migrations, don't need do again, skip the step 6. 
 
-9 - To use ```pgAdmin``` services from Docker, you can access:
+8 - To use ```pgAdmin``` services from Docker, you can access:
 ```
 http://localhost:5050
 ```
@@ -85,19 +80,19 @@ password: admin
 
 After you have written the credentials, click on ```Login``` button.
 
-10 - Using the correct credentials, the dashboard will be available.
+9 - Using the correct credentials, the dashboard will be available.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
 
-11 - ```Servers -> Register -> Server```.
+10 - ```Servers -> Register -> Server```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/03.png)
 
-12 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
+11 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/04.png)
 
-13 - On ```Connection``` tab, you need set values on following fields:
+12 - On ```Connection``` tab, you need set values on following fields:
 - Host name/address: ```pgsql```
 - Port: ```5432```
 - Maintenance database: ```postgres```
@@ -108,27 +103,27 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/05.png)
 
-14 - The ```test-postgres``` server has been created.
+13 - The ```test-postgres``` server has been created.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/06.png)
 
-15 - ```test-postgres -> Databases -> rest-api-practical-test```.
+14 - ```test-postgres -> Databases -> rest-api-practical-test```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/07.png)
 
-16 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
+15 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/08.png)
 
-17 - ```places -> View/Edit Data -> All Rows```.
+16 - ```places -> View/Edit Data -> All Rows```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/09.png)
 
-18 - There are registers in ```places``` table to populate the endpoint tests.
+17 - There are registers in ```places``` table to populate the endpoint tests.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/10.png)
 
-19 - If you have doubt about the working of Laravel from service Docker, you can access:
+18 - If you have doubt about the working of Laravel from service Docker, you can access:
 
 ```
 http://localhost:8000
@@ -138,7 +133,7 @@ You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/11.png)
 
-20 - If you power off the containers, use the command:
+19 - If you power off the containers, use the command:
 
 ```
 docker-compose down
