@@ -14,9 +14,9 @@
 - [api.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/routes/api.php)
 - [PlaceModel.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Models/PlaceModel.php)
 - [PlaceController.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Http/Controllers/Api/PlaceController.php)
-- [docker-compose.yml](https://github.com/CryptedSnow/waste-collection/blob/main/docker-compose.yml)
-- [Dockerfile](https://github.com/CryptedSnow/waste-collection/blob/main/Dockerfile)
-- [nginx.conf](https://github.com/CryptedSnow/waste-collection/blob/main/nginx/default.conf)
+- [docker-compose.yml](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/docker-compose.yml)
+- [Dockerfile](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/Dockerfile)
+- [nginx.conf](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/nginx/default.conf)
 
 ## Docker environment
 
