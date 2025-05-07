@@ -68,7 +68,7 @@ http://localhost:5050
 
 You will see:
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/01.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/01.png)
 
 Use the credentials to make login:
 ```
@@ -80,15 +80,15 @@ After you have written the credentials, click on ```Login``` button.
 
 9 - Using the correct credentials, the dashboard will be available.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/02.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/02.png)
 
 10 - ```Servers -> Register -> Server```.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/03.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/03.png)
 
 11 - About the ```Name``` field on ```General``` tab, you can choice whatever name (except ```localhost```), in my example I will use ```test-postgres```.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/04.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/04.png)
 
 12 - On ```Connection``` tab, you need set values on following fields:
 - Host name/address: ```pgsql```
@@ -99,27 +99,27 @@ After you have written the credentials, click on ```Login``` button.
 
 Finally, ckick on ```Save``` button.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/05.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/05.png)
 
 13 - The ```test-postgres``` server has been created.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/06.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/06.png)
 
 14 - ```test-postgres -> Databases -> rest-api-practical-test```.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/07.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/07.png)
 
 15 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/08.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/08.png)
 
 16 - ```places -> View/Edit Data -> All Rows```.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/09.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/09.png)
 
 17 - There are registers in ```places``` table to populate the endpoint tests.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/10.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/10.png)
 
 18 - If you have doubt about the working of Laravel from service Docker, you can access:
 
@@ -129,7 +129,7 @@ http://localhost:8000
 
 You will see:
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/11.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/11.png)
 
 19 - If you power off the containers, use the command:
 
@@ -139,7 +139,7 @@ docker-compose down
 
 Now, you can performate the endpoints using environment Docker, follow the REST API endpoint commands.
 
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/images/12.png)
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/12.png)
 
 ## REST API endpoints
 
