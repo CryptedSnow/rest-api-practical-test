@@ -61,8 +61,6 @@ docker-compose exec app php artisan migrate
 docker-compose exec app php artisan db:seed
 ```
 
-Remember: If you have done the perfomation of migrations, don't need do again, skip the step 6. 
-
 8 - To use ```pgAdmin``` services from Docker, you can access:
 ```
 http://localhost:5050
