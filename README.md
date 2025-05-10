@@ -25,7 +25,7 @@
 docker-compose up -d
 ```
 
-2 - Run the ```composer install``` command:
+2 - Run the ```composer install``` command to create ```vendor``` folder:
 ```
 docker-compose exec app composer install
 ```
@@ -35,7 +35,7 @@ docker-compose exec app composer install
 docker-compose exec app cp .env.example .env  
 ```
 
-4 - Generate to ```.env``` file:
+4 - Create crypted key (Fill ```APP_KEY=``` to ```.env``` file):
 ```
 docker-compose exec app php artisan key:generate
 ```
