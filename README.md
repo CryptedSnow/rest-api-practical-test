@@ -257,7 +257,7 @@ Case you didn't run the seeders the endpoint response will be:
 // JSON body
 {
     "name": "Gold Saucer",
-    "state": "Square Enix"
+    "state": "Square Enix",
     "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
 }
 ```
