@@ -26,7 +26,7 @@ class PlaceSeeder extends Seeder
                 'city' => 'Silent Hill',
             ],
             [
-                'name' => 'Monarch Theatre',
+                'name' => 'Arkham Asylum',
                 'state' => 'DC Comics',
                 'city' => 'Gotham City',
             ],

@@ -29,12 +29,13 @@ class PlaceController extends Controller
                 'city' => 'required',
             ]);
             $validations['slug'] = Str::slug($validations['name']);
-            $treated_data = [
-                'name' => trim((string) $validations['name']),
-                'slug' => trim((string) $validations['slug']),
-                'state' => trim((string) $validations['state']),
-                'city' => trim((string) $validations['city']),
-            ];
+            $treated_data = collect($validations)
+                ->map(function ($value) {
+                    if (is_string($value)) {
+                        return trim($value);
+                    }
+                    return $value;
+                })->toArray();
             $place = PlaceModel::create($treated_data);
             return (new PlaceResource($place))->response()->setStatusCode(201);
         } catch (ValidationException $e) {
@@ -48,7 +49,7 @@ class PlaceController extends Controller
     {
         $place = PlaceModel::find($id);
         if (!$place) {
-            return response()->json(['message' => 'Place ID not found to show.'], 404);
+            return response()->json(['message' => 'Place ID number not found to show.'], 404);
         }
         return new PlaceResource($place);
     }
@@ -61,17 +62,20 @@ class PlaceController extends Controller
                 return response()->json(['message' => 'Place ID not found to update.'], 404);
             }
             $validations = $request->validate([
-                'name' => 'required',
-                'state' => 'required',
-                'city' => 'required',
+                'name' => 'sometimes|required',
+                'state' => 'sometimes|required',
+                'city' => 'sometimes|required',
             ]);
-            $validations['slug'] = Str::slug($validations['name']);
-            $treated_data = [
-                'name' => trim((string) $validations['name']),
-                'slug' => trim((string) $validations['slug']),
-                'state' => trim((string) $validations['state']),
-                'city' => trim((string) $validations['city']),
-            ];
+            if (isset($validations['name'])) {
+                $validations['slug'] = Str::slug($validations['name']);
+            }
+            $treated_data = collect($validations)
+                ->map(function ($value) {
+                    if (is_string($value)) {
+                        return trim($value);
+                    }
+                    return $value;
+                })->toArray();
             $place->update($treated_data);
             return new PlaceResource($place);
         } catch (ValidationException $e) {

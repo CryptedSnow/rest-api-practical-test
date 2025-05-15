@@ -169,8 +169,8 @@ If you have followed the instructions above, you need use some API platform to p
     },
     {
         "id": 3,
-        "name": "Monarch Theatre",
-        "slug": "monarch-theatre",
+        "name": "Arkham Asylum",
+        "slug": "arkham-asylum",
         "state": "DC Comics",
         "city": "Gotham City",
         "created_at": "10-04-2025 08:33:00",
@@ -258,6 +258,30 @@ Case you didn't run the seeders the endpoint response will be:
 {
     "name": "Gold Saucer",
     "state": "Square Enix",
+    "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
+}
+```
+
+```
+// Response - Status: 200 OK
+{
+    "id": 5,
+    "name": "Gold Saucer",
+    "slug": "gold-saucer",
+    "state": "Square Enix",
+    "city": "Final Fantasy VII Rebirth",
+    "created_at": "10-04-2025 08:36:02",
+    "updated_at": "10-04-2025 08:38:07"
+}
+```
+
+Or to update partially, you can use ```PATCH``` http:
+
+**PATCH: localhost:8000/api/place/id**
+- You need change **id** for **5** (If you didn't run the seeder, use **1**).
+```
+// JSON body
+{
     "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
 }
 ```
