@@ -137,13 +137,13 @@ You will see:
 docker-compose down
 ```
 
-Now, you can performate the endpoints using environment Docker, follow the REST API endpoint commands.
-
-![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/12.png)
-
 ## REST API endpoints
 
 If you have followed the instructions above, you need use some API platform to perfomate the endpoints, you can use [POSTMAN](https://www.postman.com/) for example. It is necessary install Postman on your local machine to local tests.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/12.png)
+
+Now, you need follow with attention, follow the endpoints:
 
 **GET: localhost:8000/api/place**
 ```
