@@ -40,7 +40,7 @@ docker-compose exec app cp .env.example .env
 docker-compose exec app php artisan key:generate
 ```
 
-5 - In ```.env``` file set the following snippet to connect the application to database container from **Docker**:
+5 - In ```.env``` file set the following snippet to connect the application to database container from Docker:
 
 ```
 DB_CONNECTION=pgsql
@@ -82,7 +82,7 @@ After you have written the credentials, click on ```Login``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/02.png)
 
-10 - ```Servers -> Register -> Server```.
+10 - Create a server: ```Servers -> Register -> Server```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/03.png)
 
@@ -105,15 +105,15 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/06.png)
 
-14 - ```test-postgres -> Databases -> rest-api-practical-test```.
+14 - Check the created database: ```test-postgres -> Databases -> rest-api-practical-test```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/07.png)
 
-15 - ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
+15 - Check the ```places``` table: ```rest-api-practical-test -> Schemas -> public -> Tables -> places```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/08.png)
 
-16 - ```places -> View/Edit Data -> All Rows```.
+16 - Check the number of registers from ```places``` table: ```places -> View/Edit Data -> All Rows```.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/09.png)
 
