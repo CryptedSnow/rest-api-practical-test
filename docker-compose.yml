@@ -1,7 +1,7 @@
 services:
     app:
         build:
-            context: .
+            context: ./docker/8.4
             dockerfile: Dockerfile
         container_name: rest-api-practical-test-app
         extra_hosts:

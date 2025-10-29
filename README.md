@@ -20,6 +20,12 @@
 
 ## Docker environment
 
+Before run containers, you can choose PHP version of your preference (```8.0```,```8.1```,```8.2```,```8.3```,```8.4```). In ```docker-compose.yml``` to ```context```  change the version:
+```
+// Example: Change version to 8.0 
+context: ./docker/version 
+```
+
 1 - Power on the containers:
 ```
 docker-compose up -d
@@ -121,7 +127,7 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/10.png)
 
-18 - If you have doubt about the working of Laravel from service Docker, you can access:
+18 - If you have doubt about the working of Laravel from Docker service, you can access:
 
 ```
 http://localhost:8000
