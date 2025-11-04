@@ -15,7 +15,7 @@
 - [PlaceModel.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Models/PlaceModel.php)
 - [PlaceController.php](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/app/Http/Controllers/Api/PlaceController.php)
 - [docker-compose.yml](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/docker-compose.yml)
-- [Dockerfile](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/Dockerfile)
+- [Dockerfile](https://github.com/CryptedSnow/rest-api-practical-test/tree/main/docker)
 - [nginx.conf](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/nginx/default.conf)
 
 ## Docker environment
@@ -123,7 +123,7 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/09.png)
 
-17 - There are registers in ```places``` table to populate the endpoint tests.
+17 - There are registers in ```places``` table to populate endpoint tests.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/10.png)
 
@@ -149,7 +149,7 @@ If you have followed the instructions above, you need use some API platform to p
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/12.png)
 
-Now, you need follow with attention, follow the endpoints:
+Now, you need follow with attention, follow endpoint instructions:
 
 **GET: localhost:8000/api/place**
 ```
