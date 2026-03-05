@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\PlaceModel;
+use App\Models\Place;
 use App\Http\Resources\PlaceResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -13,7 +13,7 @@ class PlaceController extends Controller
 {
     public function index()
     {
-        $places = PlaceModel::all();
+        $places = Place::all();
         if ($places->isEmpty()) {
             return response()->json(['message' => 'No places found.'], 404);
         }
@@ -24,19 +24,15 @@ class PlaceController extends Controller
     {
         try {
             $validations = $request->validate([
-                'name' => 'required',
-                'state' => 'required',
-                'city' => 'required',
+                'name' => 'required|string',
+                'state' => 'required|string',
+                'city' => 'required|string',
             ]);
             $validations['slug'] = Str::slug($validations['name']);
-            $treated_data = collect($validations)
-                ->map(function ($value) {
-                    if (is_string($value)) {
-                        return trim($value);
-                    }
-                    return $value;
-                })->toArray();
-            $place = PlaceModel::create($treated_data);
+            $treated_data = array_map(
+                fn($value) => is_string($value) ? trim($value) : $value,$validations
+            );
+            $place = Place::create($treated_data);
             return (new PlaceResource($place))->response()->setStatusCode(201);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
@@ -47,7 +43,7 @@ class PlaceController extends Controller
 
     public function show($id)
     {
-        $place = PlaceModel::find($id);
+        $place = Place::find($id);
         if (!$place) {
             return response()->json(['message' => 'Place ID number not found to show.'], 404);
         }
@@ -57,25 +53,21 @@ class PlaceController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $place = PlaceModel::find($id);
+            $place = Place::find($id);
             if (!$place) {
                 return response()->json(['message' => 'Place ID not found to update.'], 404);
             }
             $validations = $request->validate([
-                'name' => 'sometimes|required',
-                'state' => 'sometimes|required',
-                'city' => 'sometimes|required',
+                'name' => 'sometimes|required|string',
+                'state' => 'sometimes|required|string',
+                'city' => 'sometimes|required|string',
             ]);
             if (isset($validations['name'])) {
                 $validations['slug'] = Str::slug($validations['name']);
             }
-            $treated_data = collect($validations)
-                ->map(function ($value) {
-                    if (is_string($value)) {
-                        return trim($value);
-                    }
-                    return $value;
-                })->toArray();
+            $treated_data = array_map(
+                fn($value) => is_string($value) ? trim($value) : $value,$validations
+            );
             $place->update($treated_data);
             return new PlaceResource($place);
         } catch (ValidationException $e) {
@@ -87,7 +79,7 @@ class PlaceController extends Controller
 
     public function destroy($id)
     {
-        $place = PlaceModel::find($id);
+        $place = Place::find($id);
         if (!$place) {
             return response()->json(['message' => 'Place ID not found to delete.'], 404);
         }
@@ -102,7 +94,7 @@ class PlaceController extends Controller
         if (!$name) {
             return response()->json(['message' => "The name field is empty."], 404);
         }
-        $places = PlaceModel::where('name', 'ILIKE', '%' . $name . '%')->get();
+        $places = Place::where('name', 'ILIKE', '%' . $name . '%')->get();
         if ($places->isEmpty()) {
             return response()->json(['message' => "No places found using the name $name."], 404);
         }
