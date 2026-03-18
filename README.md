@@ -269,7 +269,7 @@ Case you didn't run the seeders the endpoint response will be:
 ```
 
 ```
-// Response - Status: 200 OK
+// Response - Status: 202 Accepted
 {
     "id": 5,
     "name": "Gold Saucer",
@@ -293,7 +293,7 @@ Or to update partially, you can use ```PATCH``` http:
 ```
 
 ```
-// Response - Status: 200 OK
+// Response - Status: 202 Accepted
 {
     "id": 5,
     "name": "Gold Saucer",

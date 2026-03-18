@@ -13,7 +13,7 @@ class PlaceController extends Controller
 {
     public function index()
     {
-        $places = Place::all();
+        $places = Place::orderBy('id')->get();
         if ($places->isEmpty()) {
             return response()->json(['message' => 'No places found.'], 404);
         }
@@ -45,7 +45,7 @@ class PlaceController extends Controller
     {
         $place = Place::find($id);
         if (!$place) {
-            return response()->json(['message' => 'Place ID number not found to show.'], 404);
+            return response()->json(['message' => "Place ID $id not found to show."], 404);
         }
         return new PlaceResource($place);
     }
@@ -55,7 +55,7 @@ class PlaceController extends Controller
         try {
             $place = Place::find($id);
             if (!$place) {
-                return response()->json(['message' => 'Place ID not found to update.'], 404);
+                return response()->json(['message' => "Place ID $id not found to update."], 404);
             }
             $validations = $request->validate([
                 'name' => 'sometimes|required|string',
@@ -69,7 +69,7 @@ class PlaceController extends Controller
                 fn($value) => is_string($value) ? trim($value) : $value,$validations
             );
             $place->update($treated_data);
-            return new PlaceResource($place);
+            return (new PlaceResource($place))->response()->setStatusCode(202);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
         } catch (\Exception $e) {
@@ -81,7 +81,7 @@ class PlaceController extends Controller
     {
         $place = Place::find($id);
         if (!$place) {
-            return response()->json(['message' => 'Place ID not found to delete.'], 404);
+            return response()->json(['message' => "Place ID $id not found to delete."], 404);
         }
         $place_name = $place->name;
         $place->delete();
