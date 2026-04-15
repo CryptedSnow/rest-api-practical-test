@@ -13,7 +13,7 @@ class PlaceController extends Controller
 {
     public function index()
     {
-        $places = Place::orderBy('id')->get();
+        $places = Place::orderBy('id')->paginate(5);
         if ($places->isEmpty()) {
             return response()->json(['message' => 'No places found.'], 404);
         }
@@ -29,10 +29,10 @@ class PlaceController extends Controller
                 'city' => 'required|string',
             ]);
             $validations['slug'] = Str::slug($validations['name']);
-            $treated_data = array_map(
-                fn($value) => is_string($value) ? trim($value) : $value,$validations
+            $treatedData = array_map(
+                fn($value) => is_string($value) ? trim($value) : $value, $validations
             );
-            $place = Place::create($treated_data);
+            $place = Place::create($treatedData);
             return (new PlaceResource($place))->response()->setStatusCode(201);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
@@ -65,10 +65,10 @@ class PlaceController extends Controller
             if (isset($validations['name'])) {
                 $validations['slug'] = Str::slug($validations['name']);
             }
-            $treated_data = array_map(
-                fn($value) => is_string($value) ? trim($value) : $value,$validations
+            $treatedData = array_map(
+                fn($value) => is_string($value) ? trim($value) : $value, $validations
             );
-            $place->update($treated_data);
+            $place->update($treatedData);
             return (new PlaceResource($place))->response()->setStatusCode(202);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
@@ -83,9 +83,8 @@ class PlaceController extends Controller
         if (!$place) {
             return response()->json(['message' => "Place ID $id not found to delete."], 404);
         }
-        $place_name = $place->name;
         $place->delete();
-        return response()->json(['message' => "$place_name is deleted."], 200);
+        return response()->json(['message' => "$place->name is deleted."], 200);
     }
 
     public function searchName(Request $request)

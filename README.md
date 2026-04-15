@@ -62,7 +62,7 @@ DB_PASSWORD=secret
 docker-compose exec app php artisan migrate
 ```
 
-7 - Use the command to perfomate the Seeders:
+7 - Use the command to perfomate the seeders:
 ```
 docker-compose exec app php artisan db:seed
 ```
@@ -151,47 +151,84 @@ If you have followed the instructions above, you need use some API platform to p
 
 Now, you need follow with attention, follow endpoint instructions:
 
-**GET: localhost:8000/api/place**
+**GET: localhost:8000/api/places**
 ```
 // Response - Status: 200 OK
-[
-    {
-        "id": 1,
-        "name": "Safe Room",
-        "slug": "safe-room",
-        "state": "Capcom",
-        "city": "Raccoon City",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Safe Room",
+            "slug": "safe-room",
+            "state": "Capcom",
+            "city": "Raccoon City",
+            "created_at": "14-04-2026 21:37:04",
+            "updated_at": "14-04-2026 21:37:04"
+        },
+        {
+            "id": 2,
+            "name": "Observation Deck",
+            "slug": "observation-deck",
+            "state": "Konami",
+            "city": "Silent Hill",
+            "created_at": "14-04-2026 21:37:04",
+            "updated_at": "14-04-2026 21:37:04"
+        },
+        {
+            "id": 3,
+            "name": "Arkham Asylum",
+            "slug": "arkham-asylum",
+            "state": "DC Comics",
+            "city": "Gotham City",
+            "created_at": "14-04-2026 21:37:04",
+            "updated_at": "14-04-2026 21:37:04"
+        },
+        {
+            "id": 4,
+            "name": "The West Side",
+            "slug": "the-west-side",
+            "state": "Capcom",
+            "city": "Metro City",
+            "created_at": "14-04-2026 21:37:04",
+            "updated_at": "14-04-2026 21:37:04"
+        }
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/places?page=1",
+        "last": "http://localhost:8000/api/places?page=1",
+        "prev": null,
+        "next": null
     },
-    {
-        "id": 2,
-        "name": "Observation Deck",
-        "slug": "observation-deck",
-        "state": "Konami",
-        "city": "Silent Hill",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
-    },
-    {
-        "id": 3,
-        "name": "Arkham Asylum",
-        "slug": "arkham-asylum",
-        "state": "DC Comics",
-        "city": "Gotham City",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
-    },
-    {
-        "id": 4,
-        "name": "The West Side",
-        "slug": "the-west-side",
-        "state": "Capcom",
-        "city": "Metro City",
-        "created_at": "10-04-2025 08:33:00",
-        "updated_at": "10-04-2025 08:33:00"
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "page": null,
+                "active": false
+            },
+            {
+                "url": "http://localhost:8000/api/places?page=1",
+                "label": "1",
+                "page": 1,
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "page": null,
+                "active": false
+            }
+        ],
+        "path": "http://localhost:8000/api/places",
+        "per_page": 5,
+        "to": 4,
+        "total": 4
     }
-]
+}
 ```
 
 Case you didn't run the seeders the endpoint response will be:
@@ -202,7 +239,7 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
-**POST: localhost:8000/api/place**
+**POST: localhost:8000/api/places**
 ```
 // JSON body
 {
@@ -225,7 +262,7 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
-**GET: localhost:8000/api/place/id**
+**GET: localhost:8000/api/places/id**
 - You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // Response - Status: 200 OK
@@ -240,7 +277,7 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
-**GET: localhost:8000/api/place-search?name=**
+**GET: localhost:8000/api/places-search?name=**
 - You need change **name=** for **name=Gold**.
 ```
 // Response - Status: 200 OK
@@ -257,7 +294,7 @@ Case you didn't run the seeders the endpoint response will be:
 ]
 ```
 
-**PUT: localhost:8000/api/place/id**
+**PUT: localhost:8000/api/places/id**
 - You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // JSON body
@@ -283,7 +320,7 @@ Case you didn't run the seeders the endpoint response will be:
 
 Or to update partially, you can use ```PATCH``` http:
 
-**PATCH: localhost:8000/api/place/id**
+**PATCH: localhost:8000/api/places/id**
 - You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // JSON body
@@ -305,7 +342,7 @@ Or to update partially, you can use ```PATCH``` http:
 }
 ```
 
-**DELETE: localhost:8000/api/place/id**
+**DELETE: localhost:8000/api/places/id**
 - You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // Response - Status: 200 OK

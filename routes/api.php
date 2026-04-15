@@ -13,15 +13,15 @@ Route::get('/user', function (Request $request) {
 | php artisan route:list
 |--------------------------------------------------------------------------
 */
-// GET: localhost:8000/api/place
-// POST: localhost:8000/api/place
-// GET: localhost:8080/api/place-search?name=
-// GET: localhost:8000/api/place/id
-// PUT/PATCH: localhost:8000/api/place/id
-// DELETE: localhost:8000/api/place/id
+// GET: localhost:8000/api/places
+// POST: localhost:8000/api/places
+// GET: localhost:8080/api/places-search?name=
+// GET: localhost:8000/api/places/id
+// PUT/PATCH: localhost:8000/api/places/id
+// DELETE: localhost:8000/api/places/id
 
 Route::apiResources([
-    'place' => PlaceController::class,
+    'places' => PlaceController::class,
 ]);
 
-Route::get('place-search', [PlaceController::class, 'searchName']);
+Route::get('places-search', [PlaceController::class, 'searchName']);
