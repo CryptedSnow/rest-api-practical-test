@@ -93,7 +93,7 @@ class PlaceController extends Controller
         if (!$name) {
             return response()->json(['message' => "The name field is empty."], 404);
         }
-        $places = Place::where('name', 'ILIKE', '%' . $name . '%')->get();
+        $places = Place::where('name', 'ILIKE', '%' . $name . '%')->orderby('id')->paginate(5);
         if ($places->isEmpty()) {
             return response()->json(['message' => "No places found using the name $name."], 404);
         }

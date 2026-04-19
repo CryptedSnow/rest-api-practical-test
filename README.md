@@ -1,12 +1,3 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 ## Files of importancy
 - [Places (migration)](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/migrations/2025_04_09_170109_create_places_table.php)
 - [DatabaseSeeder](https://github.com/CryptedSnow/rest-api-practical-test/blob/main/database/seeders/DatabaseSeeder.php)
@@ -281,17 +272,54 @@ Case you didn't run the seeders the endpoint response will be:
 - You need change **name=** for **name=Gold**.
 ```
 // Response - Status: 200 OK
-[
-    {
-        "id": 5,
-        "name": "Gold Saucer",
-        "slug": "gold-saucer",
-        "state": "Square Enix",
-        "city": "Final Fantasy VII",
-        "created_at": "10-04-2025 08:36:02",
-        "updated_at": "10-04-2025 08:36:02"
+{
+    "data": [
+        {
+            "id": 5,
+            "name": "Gold Saucer",
+            "slug": "gold-saucer",
+            "state": "Square Enix",
+            "city": "Final Fantasy VII",
+            "created_at": "19-04-2026 14:34:02",
+            "updated_at": "19-04-2026 14:34:02"
+        }
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/places-search?page=1",
+        "last": "http://localhost:8000/api/places-search?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "page": null,
+                "active": false
+            },
+            {
+                "url": "http://localhost:8000/api/places-search?page=1",
+                "label": "1",
+                "page": 1,
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "page": null,
+                "active": false
+            }
+        ],
+        "path": "http://localhost:8000/api/places-search",
+        "per_page": 5,
+        "to": 1,
+        "total": 1
     }
-]
+}
 ```
 
 **PUT: localhost:8000/api/places/id**
