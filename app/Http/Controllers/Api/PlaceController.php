@@ -29,10 +29,7 @@ class PlaceController extends Controller
                 'city' => 'required|string',
             ]);
             $validations['slug'] = Str::slug($validations['name']);
-            $treatedData = array_map(
-                fn($value) => is_string($value) ? trim($value) : $value, $validations
-            );
-            $place = Place::create($treatedData);
+            $place = Place::create($validations);
             return (new PlaceResource($place))->response()->setStatusCode(201);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);
@@ -65,10 +62,7 @@ class PlaceController extends Controller
             if (isset($validations['name'])) {
                 $validations['slug'] = Str::slug($validations['name']);
             }
-            $treatedData = array_map(
-                fn($value) => is_string($value) ? trim($value) : $value, $validations
-            );
-            $place->update($treatedData);
+            $place->update($validations);
             return (new PlaceResource($place))->response()->setStatusCode(202);
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->errors()], 422);

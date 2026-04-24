@@ -10,11 +10,12 @@ class Place extends Model
     use HasFactory;
 
     protected $table = 'places';
-    protected $primary_key = 'id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'name',
         'slug',
         'state',
         'city',
     ];
+
 }
