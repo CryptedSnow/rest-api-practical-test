@@ -243,13 +243,16 @@ Case you didn't run the seeders the endpoint response will be:
 ```
 // Response - Status: 201 Created
 {
-    "id": 5,
-    "name": "Gold Saucer",
-    "slug": "gold-saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII",
-    "created_at": "10-04-2025 08:36:02",
-    "updated_at": "10-04-2025 08:36:02"
+    "message": "Place Gold Saucer was created.",
+    "data": {
+        "id": 5,
+        "name": "Gold Saucer",
+        "slug": "gold-saucer",
+        "state": "Square Enix",
+        "city": "Final Fantasy",
+        "created_at": "28-04-2026 09:29:05",
+        "updated_at": "28-04-2026 09:29:05"
+    }
 }
 ```
 
@@ -258,13 +261,15 @@ Case you didn't run the seeders the endpoint response will be:
 ```
 // Response - Status: 200 OK
 {
-    "id": 5,
-    "name": "Gold Saucer",
-    "slug": "gold-saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII",
-    "created_at": "10-04-2025 08:36:02",
-    "updated_at": "10-04-2025 08:36:02"
+    "data": {
+        "id": 5,
+        "name": "Gold Saucer",
+        "slug": "gold-saucer",
+        "state": "Square Enix",
+        "city": "Final Fantasy",
+        "created_at": "28-04-2026 09:29:05",
+        "updated_at": "28-04-2026 09:29:05"
+    }
 }
 ```
 
@@ -279,9 +284,9 @@ Case you didn't run the seeders the endpoint response will be:
             "name": "Gold Saucer",
             "slug": "gold-saucer",
             "state": "Square Enix",
-            "city": "Final Fantasy VII",
-            "created_at": "19-04-2026 14:34:02",
-            "updated_at": "19-04-2026 14:34:02"
+            "city": "Final Fantasy",
+            "created_at": "28-04-2026 09:29:05",
+            "updated_at": "28-04-2026 09:29:05"
         }
     ],
     "links": {
@@ -329,20 +334,23 @@ Case you didn't run the seeders the endpoint response will be:
 {
     "name": "Gold Saucer",
     "state": "Square Enix",
-    "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
+    "city": "Final Fantasy VII Rebirth" // Final Fantasy to Final Fantasy VII Rebirth
 }
 ```
 
 ```
 // Response - Status: 202 Accepted
 {
-    "id": 5,
-    "name": "Gold Saucer",
-    "slug": "gold-saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII Rebirth",
-    "created_at": "10-04-2025 08:36:02",
-    "updated_at": "10-04-2025 08:38:07"
+    "message": "Place Gold Saucer was updated.",
+    "data": {
+        "id": 5,
+        "name": "Gold Saucer",
+        "slug": "gold-saucer",
+        "state": "Square Enix",
+        "city": "Final Fantasy VII Rebirth",
+        "created_at": "28-04-2026 09:29:05",
+        "updated_at": "28-04-2026 09:32:38"
+    }
 }
 ```
 
@@ -353,20 +361,23 @@ Or to update partially, you can use ```PATCH``` http:
 ```
 // JSON body
 {
-    "city": "Final Fantasy VII Rebirth" // Final Fantasy VII to Final Fantasy VII Rebirth
+    "city": "Final Fantasy VII Rebirth" // Final Fantasy to Final Fantasy VII Rebirth
 }
 ```
 
 ```
 // Response - Status: 202 Accepted
 {
-    "id": 5,
-    "name": "Gold Saucer",
-    "slug": "gold-saucer",
-    "state": "Square Enix",
-    "city": "Final Fantasy VII Rebirth",
-    "created_at": "10-04-2025 08:36:02",
-    "updated_at": "10-04-2025 08:38:07"
+    "message": "Place Gold Saucer was updated.",
+    "data": {
+        "id": 5,
+        "name": "Gold Saucer",
+        "slug": "gold-saucer",
+        "state": "Square Enix",
+        "city": "Final Fantasy VII Rebirth",
+        "created_at": "28-04-2026 09:29:05",
+        "updated_at": "28-04-2026 09:32:38"
+    }
 }
 ```
 
@@ -375,6 +386,6 @@ Or to update partially, you can use ```PATCH``` http:
 ```
 // Response - Status: 200 OK
 {
-    "message": "Gold Saucer is deleted."
+    "message": "Place Gold Saucer was deleted."
 }
 ```
