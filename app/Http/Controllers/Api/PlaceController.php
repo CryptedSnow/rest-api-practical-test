@@ -14,13 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PlaceController extends Controller
 {
-    public function __construct(
-        private readonly PlaceRepositoryInterface $repository
-    ) {}
+    public function __construct(protected PlaceRepositoryInterface $placeRepositoryInterface) {}
 
     public function index(): AnonymousResourceCollection | JsonResponse
     {
-        $places = $this->repository->getAllPaginated(5);
+        $places = $this->placeRepositoryInterface->getAllPaginated(5);
 
         if ($places->isEmpty()) {
             return response()->json([
@@ -37,7 +35,7 @@ class PlaceController extends Controller
 
         $data['slug'] = Str::slug($data['name']);
 
-        $place = $this->repository->create($data);
+        $place = $this->placeRepositoryInterface->create($data);
 
         return response()->json([
             'message' => "Place $place->name was created.",
@@ -47,7 +45,7 @@ class PlaceController extends Controller
 
     public function show(int $id): PlaceResource | JsonResponse
     {
-        $place = $this->repository->findById($id);
+        $place = $this->placeRepositoryInterface->findById($id);
 
         if (!$place) {
             return response()->json([
@@ -60,7 +58,7 @@ class PlaceController extends Controller
 
     public function update(PlaceUpdateRequest $request, int $id): JsonResponse
     {
-        $place = $this->repository->findById($id);
+        $place = $this->placeRepositoryInterface->findById($id);
 
         if (!$place) {
             return response()->json([
@@ -83,7 +81,7 @@ class PlaceController extends Controller
             }
         }
 
-        $place = $this->repository->update($place, $data);
+        $place = $this->placeRepositoryInterface->update($place, $data);
 
         return response()->json([
             'message' => "Place $place->name was updated.",
@@ -93,7 +91,7 @@ class PlaceController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-        $place = $this->repository->findById($id);
+        $place = $this->placeRepositoryInterface->findById($id);
 
         if (!$place) {
             return response()->json([
@@ -101,7 +99,7 @@ class PlaceController extends Controller
             ], Response::HTTP_NOT_FOUND);
         }
 
-        $this->repository->delete($place);
+        $this->placeRepositoryInterface->delete($place);
 
         return response()->json([
             'message' => "Place $place->name was deleted."
@@ -118,7 +116,7 @@ class PlaceController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $places = $this->repository->searchName(trim($namePlace), 5);
+        $places = $this->placeRepositoryInterface->searchName($namePlace);
 
         if ($places->isEmpty()) {
             return response()->json([
