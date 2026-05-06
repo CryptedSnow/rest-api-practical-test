@@ -13,4 +13,6 @@ interface PlaceRepositoryInterface
     public function update(Place $place, array $data): Place;
     public function delete(Place $place): bool;
     public function searchName(string $name, int $perPage = 5): LengthAwarePaginator;
+    public function generateSlug(string $name, int $id): string;
+    public function slugExists(string $slug, int $excludeId): bool;
 }

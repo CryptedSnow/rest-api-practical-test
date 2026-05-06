@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{PlaceStoreRequest, PlaceUpdateRequest};
 use App\Http\Resources\PlaceResource;
-use App\Models\Place;
 use App\Repositories\Contracts\PlaceRepositoryInterface;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class PlaceController extends Controller
@@ -31,11 +29,11 @@ class PlaceController extends Controller
 
     public function store(PlaceStoreRequest $request): JsonResponse
     {
-        $data = $request->validated();
+        $validations = $request->validated();
 
-        $data['slug'] = Str::slug($data['name']);
+        $validations['slug'] = $this->placeRepositoryInterface->generateSlug($validations['name'], 0);
 
-        $place = $this->placeRepositoryInterface->create($data);
+        $place = $this->placeRepositoryInterface->create($validations);
 
         return response()->json([
             'message' => "Place $place->name was created.",
@@ -66,22 +64,13 @@ class PlaceController extends Controller
             ], Response::HTTP_NOT_FOUND);
         }
 
-        $data = $request->validated();
+        $validations = $request->validated();
 
-        if (array_key_exists('name', $data) && !empty($data['name'])) {
-
-            $baseSlug = Str::slug($data['name']);
-
-            $existingSlug = Place::where('slug', $baseSlug)->where('id', '!=', $id)->exists();
-
-            if ($existingSlug) {
-                $data['slug'] = $baseSlug . '-' . $id;
-            } else {
-                $data['slug'] = $baseSlug;
-            }
+        if (array_key_exists('name', $validations) && !empty($validations['name'])) {
+            $validations['slug'] = $this->placeRepositoryInterface->generateSlug($validations['name'], $id);
         }
 
-        $place = $this->placeRepositoryInterface->update($place, $data);
+        $place = $this->placeRepositoryInterface->update($place, $validations);
 
         return response()->json([
             'message' => "Place $place->name was updated.",
