@@ -102,7 +102,7 @@ class PlaceController extends Controller
         if (!$namePlace) {
             return response()->json([
                 'message' => 'The name field is empty.'
-            ], Response::HTTP_BAD_REQUEST);
+            ], Response::HTTP_NOT_FOUND);
         }
 
         $places = $this->placeRepositoryInterface->searchName($namePlace);
