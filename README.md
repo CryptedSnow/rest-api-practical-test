@@ -357,10 +357,8 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
-Or to update partially, you can use ```PATCH``` http:
+Or to update partially:
 
-**PATCH: localhost:8000/api/places/id**
-- You need change **id** for **5** (If you didn't run the seeder, use **1**).
 ```
 // JSON body
 {
