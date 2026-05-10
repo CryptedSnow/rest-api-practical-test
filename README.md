@@ -14,12 +14,6 @@
 
 ## Docker environment
 
-Before run containers, you can choose PHP version of your preference (```8.0```,```8.1```,```8.2```,```8.3```,```8.4```). In ```docker-compose.yml``` to ```context```  change the version:
-```
-// Example: Change version to 8.0 
-context: ./docker/version 
-```
-
 1 - Power on the containers:
 ```
 docker-compose up -d
