@@ -5,18 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{PlaceStoreRequest, PlaceUpdateRequest};
 use App\Http\Resources\PlaceResource;
-use App\Repositories\Contracts\PlaceRepositoryInterface;
+use App\Repositories\Interfaces\PlaceInterface;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
 
 class PlaceController extends Controller
 {
-    public function __construct(protected PlaceRepositoryInterface $placeRepositoryInterface) {}
+    public function __construct(private PlaceInterface $placeInterface) {}
 
     public function index(): AnonymousResourceCollection | JsonResponse
     {
-        $places = $this->placeRepositoryInterface->getAllPaginated(5);
+        $places = $this->placeInterface->listPlaces(5);
 
         if ($places->isEmpty()) {
             return response()->json([
@@ -31,9 +31,9 @@ class PlaceController extends Controller
     {
         $validations = $request->validated();
 
-        $validations['slug'] = $this->placeRepositoryInterface->generateSlug($validations['name'], 0);
+        $validations['slug'] = $this->placeInterface->generateSlug($validations['name'], 0);
 
-        $place = $this->placeRepositoryInterface->create($validations);
+        $place = $this->placeInterface->createPlace($validations);
 
         return response()->json([
             'message' => "Place $place->name was created.",
@@ -43,7 +43,7 @@ class PlaceController extends Controller
 
     public function show(int $id): PlaceResource | JsonResponse
     {
-        $place = $this->placeRepositoryInterface->findById($id);
+        $place = $this->placeInterface->findPlaceId($id);
 
         if (!$place) {
             return response()->json([
@@ -56,7 +56,7 @@ class PlaceController extends Controller
 
     public function update(PlaceUpdateRequest $request, int $id): JsonResponse
     {
-        $place = $this->placeRepositoryInterface->findById($id);
+        $place = $this->placeInterface->findPlaceId($id);
 
         if (!$place) {
             return response()->json([
@@ -67,10 +67,10 @@ class PlaceController extends Controller
         $validations = $request->validated();
 
         if (array_key_exists('name', $validations) && !empty($validations['name'])) {
-            $validations['slug'] = $this->placeRepositoryInterface->generateSlug($validations['name'], $id);
+            $validations['slug'] = $this->placeInterface->generateSlug($validations['name'], $id);
         }
 
-        $place = $this->placeRepositoryInterface->update($place, $validations);
+        $place = $this->placeInterface->updatePlace($place, $validations);
 
         return response()->json([
             'message' => "Place $place->name was updated.",
@@ -80,7 +80,7 @@ class PlaceController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-        $place = $this->placeRepositoryInterface->findById($id);
+        $place = $this->placeInterface->findPlaceId($id);
 
         if (!$place) {
             return response()->json([
@@ -88,7 +88,7 @@ class PlaceController extends Controller
             ], Response::HTTP_NOT_FOUND);
         }
 
-        $this->placeRepositoryInterface->delete($place);
+        $this->placeInterface->deletePlace($place);
 
         return response()->json([
             'message' => "Place $place->name was deleted."
@@ -105,7 +105,7 @@ class PlaceController extends Controller
             ], Response::HTTP_NOT_FOUND);
         }
 
-        $places = $this->placeRepositoryInterface->searchName($namePlace);
+        $places = $this->placeInterface->searchPlaceName($namePlace);
 
         if ($places->isEmpty()) {
             return response()->json([

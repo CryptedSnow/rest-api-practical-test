@@ -1,41 +1,41 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace App\Repositories\Services;
 
 use App\Models\Place;
-use App\Repositories\Contracts\PlaceRepositoryInterface;
+use App\Repositories\Interfaces\PlaceInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
-class PlaceRepository implements PlaceRepositoryInterface
+class PlaceService implements PlaceInterface
 {
-    public function getAllPaginated(int $perPage = 5): LengthAwarePaginator
+    public function listPlaces(int $perPage = 5): LengthAwarePaginator
     {
         return Place::paginate($perPage);
     }
 
-    public function findById(int $id): ?Place
+    public function findPlaceId(int $id): ?Place
     {
         return Place::find($id);
     }
 
-    public function create(array $data): Place
+    public function createPlace(array $data): Place
     {
         return Place::create($data);
     }
 
-    public function update(Place $place, array $data): Place
+    public function updatePlace(Place $place, array $data): Place
     {
         $place->update($data);
         return $place->fresh();
     }
 
-    public function delete(Place $place): bool
+    public function deletePlace(Place $place): bool
     {
         return $place->delete();
     }
 
-    public function searchName(string $name, int $perPage = 5): LengthAwarePaginator
+    public function searchPlaceName(string $name, int $perPage = 5): LengthAwarePaginator
     {
         return Place::where('name', 'ILIKE', "%{$name}%")->paginate($perPage);
     }
