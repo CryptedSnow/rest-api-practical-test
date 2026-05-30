@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repositories\Interfaces\PlaceInterface;
-use App\Repositories\Services\PlaceService;
+use App\Interfaces\PlaceInterface;
+use App\Services\PlaceService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

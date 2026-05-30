@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories\Services;
+namespace App\Services;
 
 use App\Models\Place;
-use App\Repositories\Interfaces\PlaceInterface;
+use App\Interfaces\PlaceInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 

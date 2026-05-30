@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\PlaceInterface;
 use App\Http\Requests\{PlaceStoreRequest, PlaceUpdateRequest};
 use App\Http\Resources\PlaceResource;
-use App\Repositories\Interfaces\PlaceInterface;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
