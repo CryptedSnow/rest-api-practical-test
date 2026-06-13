@@ -196,7 +196,7 @@ class PlaceController extends Controller
 
         if ($places->isEmpty()) {
             return response()->json([
-                'message' => "No places found using the name $places."
+                'message' => "No places found using the name $namePlace."
             ], Response::HTTP_NOT_FOUND);
         }
 
