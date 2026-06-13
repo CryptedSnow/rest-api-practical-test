@@ -1,0 +1,210 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Places API",
+        "description": "API REST to manage places",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Local server (Docker)"
+        }
+    ],
+    "paths": {
+        "/places": {
+            "get": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "List all places",
+                "operationId": "46c44db56fdfd0342848f146c205dc19",
+                "responses": {
+                    "200": {
+                        "description": "All places retrieved"
+                    },
+                    "404": {
+                        "description": "No places found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "Create a new place",
+                "operationId": "a4df955a3de13a5fa6d3d33c6278ebd4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "state",
+                                    "city"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Gold Saucer"
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "example": "Square Enix"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Final Fantasy VII"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Place created"
+                    },
+                    "422": {
+                        "description": "Invalid data"
+                    }
+                }
+            }
+        },
+        "/places/{id}": {
+            "get": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "Show place by ID",
+                "operationId": "8b047e2c39e8d13d7c73c06e485ef2c0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Place found"
+                    },
+                    "404": {
+                        "description": "Place not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "Update place",
+                "operationId": "7cf0b8ed73a44f449d4c2d180ab05c44",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Gold Saucer"
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "example": "Square Enix"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Final Fantasy VII Rebirth"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Place updated"
+                    },
+                    "404": {
+                        "description": "Place not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "Delete place",
+                "operationId": "804601098c61e5b5bc20c7907b8745a5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Place deleted"
+                    },
+                    "404": {
+                        "description": "Place not found"
+                    }
+                }
+            }
+        },
+        "/places-search": {
+            "get": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "Search places by name",
+                "operationId": "57c96c8d69be2850fc2b2732f54e003f",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Results found"
+                    },
+                    "404": {
+                        "description": "No results found"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Places",
+            "description": "Places"
+        }
+    ]
+}

@@ -134,15 +134,30 @@ docker-compose down
 
 ## REST API endpoints
 
-If you have followed the instructions above, you need use some API platform to perfomate the endpoints, you can use [POSTMAN](https://www.postman.com/) for example. It is necessary install Postman on your local machine to local tests.
+To use ```Swagger``` services from Docker, you can access
+
+```
+http://localhost:8000/api/documentation
+```
+
+You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/12.png)
+
+To access endpoints from Swagger, click on ```V``` icon:
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/13.png)
+
+If you have followed the instructions above, you need use some API platform to perfomate the endpoints, you can use [POSTMAN](https://www.postman.com/) for example. It is necessary install Postman on your local machine to local tests.
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/14.png)
 
 Now, you need follow with attention, follow endpoint instructions:
 
 **GET: localhost:8000/api/places**
+
+- Response: 200 OK
 ```
-// Response - Status: 200 OK
 {
     "data": [
         {
@@ -220,17 +235,11 @@ Now, you need follow with attention, follow endpoint instructions:
 }
 ```
 
-Case you didn't run the seeders the endpoint response will be:
-```
-// Response - Status: 404 Not Found
-{
-    "message": "No places found."
-}
-```
-
 **POST: localhost:8000/api/places**
+
+**JSON body**
+
 ```
-// JSON body
 {
     "name": "Gold Saucer",
     "state": "Square Enix",
@@ -238,8 +247,8 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
+- Response: 201 Created
 ```
-// Response - Status: 201 Created
 {
     "message": "Place Gold Saucer was created.",
     "data": {
@@ -254,10 +263,11 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
-**GET: localhost:8000/api/places/id**
-- You need change **id** for **5** (If you didn't run the seeder, use **1**).
+**GET: localhost:8000/api/places/{id}**
+- You need change **{id}** for **5**.
+- Response: 200 OK
+
 ```
-// Response - Status: 200 OK
 {
     "data": {
         "id": 5,
@@ -273,8 +283,9 @@ Case you didn't run the seeders the endpoint response will be:
 
 **GET: localhost:8000/api/places-search?name=**
 - You need change **name=** for **name=Gold**.
+- Response: 200 OK
+
 ```
-// Response - Status: 200 OK
 {
     "data": [
         {
@@ -325,10 +336,12 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
-**PUT: localhost:8000/api/places/id**
-- You need change **id** for **5** (If you didn't run the seeder, use **1**).
+**PUT: localhost:8000/api/places/{id}**
+- You need change **{id}** for **5**.
+
+**JSON body**
+
 ```
-// JSON body
 {
     "name": "Gold Saucer",
     "state": "Square Enix",
@@ -336,8 +349,9 @@ Case you didn't run the seeders the endpoint response will be:
 }
 ```
 
+- Response - Status: 202 Accepted
+
 ```
-// Response - Status: 202 Accepted
 {
     "message": "Place Gold Saucer was updated.",
     "data": {
@@ -354,15 +368,17 @@ Case you didn't run the seeders the endpoint response will be:
 
 Or to update partially:
 
+**JSON body**
+
 ```
-// JSON body
 {
-    "city": "Final Fantasy VII Rebirth" // Final Fantasy to Final Fantasy VII Rebirth
+    "city": "Final Fantasy VII Rebirth"
 }
 ```
 
+- Response: 202 Accepted
+
 ```
-// Response - Status: 202 Accepted
 {
     "message": "Place Gold Saucer was updated.",
     "data": {
@@ -377,10 +393,11 @@ Or to update partially:
 }
 ```
 
-**DELETE: localhost:8000/api/places/id**
-- You need change **id** for **5** (If you didn't run the seeder, use **1**).
+**DELETE: localhost:8000/api/places/{id}**
+- You need change **{id}** for **5**.
+- Response: 200 OK
+
 ```
-// Response - Status: 200 OK
 {
     "message": "Place Gold Saucer was deleted."
 }

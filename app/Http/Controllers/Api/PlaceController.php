@@ -9,11 +9,21 @@ use App\Http\Resources\PlaceResource;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
+use OpenApi\Attributes as OA;
 
 class PlaceController extends Controller
 {
     public function __construct(private PlaceInterface $placeInterface) {}
 
+    #[OA\Get(
+        path: '/places',
+        summary: 'List all places',
+        tags: ['Places'],
+        responses: [
+            new OA\Response(response: 200, description: 'All places retrieved'),
+            new OA\Response(response: 404, description: 'No places found'),
+        ]
+    )]
     public function index(): AnonymousResourceCollection | JsonResponse
     {
         $places = $this->placeInterface->listPlaces(5);
@@ -27,6 +37,26 @@ class PlaceController extends Controller
         return PlaceResource::collection($places);
     }
 
+    #[OA\Post(
+        path: '/places',
+        summary: 'Create a new place',
+        tags: ['Places'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                required: ['name', 'state', 'city'],
+                properties: [
+                    new OA\Property(property: 'name',  type: 'string', example: 'Gold Saucer'),
+                    new OA\Property(property: 'state', type: 'string', example: 'Square Enix'),
+                    new OA\Property(property: 'city',  type: 'string', example: 'Final Fantasy VII'),
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(response: 201, description: 'Place created'),
+            new OA\Response(response: 422, description: 'Invalid data'),
+        ]
+    )]
     public function store(PlaceStoreRequest $request): JsonResponse
     {
         $validations = $request->validated();
@@ -41,6 +71,18 @@ class PlaceController extends Controller
         ], Response::HTTP_CREATED);
     }
 
+    #[OA\Get(
+        path: '/places/{id}',
+        summary: 'Show place by ID',
+        tags: ['Places'],
+        parameters: [
+            new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer')),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Place found'),
+            new OA\Response(response: 404, description: 'Place not found'),
+        ]
+    )]
     public function show(int $id): PlaceResource | JsonResponse
     {
         $place = $this->placeInterface->findPlaceId($id);
@@ -54,6 +96,27 @@ class PlaceController extends Controller
         return new PlaceResource($place);
     }
 
+    #[OA\Put(
+        path: '/places/{id}',
+        summary: 'Update place',
+        tags: ['Places'],
+        parameters: [
+            new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer')),
+        ],
+        requestBody: new OA\RequestBody(
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: 'name',  type: 'string', example: 'Gold Saucer'),
+                    new OA\Property(property: 'state', type: 'string', example: 'Square Enix'),
+                    new OA\Property(property: 'city',  type: 'string', example: 'Final Fantasy VII Rebirth'),
+                ]
+            )
+        ),
+        responses: [
+            new OA\Response(response: 202, description: 'Place updated'),
+            new OA\Response(response: 404, description: 'Place not found'),
+        ]
+    )]
     public function update(PlaceUpdateRequest $request, int $id): JsonResponse
     {
         $place = $this->placeInterface->findPlaceId($id);
@@ -78,6 +141,18 @@ class PlaceController extends Controller
         ], Response::HTTP_ACCEPTED);
     }
 
+    #[OA\Delete(
+        path: '/places/{id}',
+        summary: 'Delete place',
+        tags: ['Places'],
+        parameters: [
+            new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer')),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Place deleted'),
+            new OA\Response(response: 404, description: 'Place not found'),
+        ]
+    )]
     public function destroy(int $id): JsonResponse
     {
         $place = $this->placeInterface->findPlaceId($id);
@@ -95,6 +170,18 @@ class PlaceController extends Controller
         ], Response::HTTP_OK);
     }
 
+    #[OA\Get(
+        path: '/places-search',
+        summary: 'Search places by name',
+        tags: ['Places'],
+        parameters: [
+            new OA\Parameter(name: 'name', in: 'query', required: true, schema: new OA\Schema(type: 'string')),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Results found'),
+            new OA\Response(response: 404, description: 'No results found'),
+        ]
+    )]
     public function searchName(Request $request): AnonymousResourceCollection | JsonResponse
     {
         $namePlace = $request->query('name');
