@@ -134,19 +134,24 @@ docker-compose down
 
 ## REST API endpoints
 
-To use ```Swagger``` services from Docker, you can access
+01 - To use ```Swagger``` services from Docker, you can access:
 
 ```
 http://localhost:8000/api/documentation
 ```
 
-You will see:
+02 - You will see:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/12.png)
 
-To access endpoints from Swagger, click on ```V``` icon:
+03 - To access endpoints, click on ```V``` icon:
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/13.png)
+
+04 - You will see the endpoints:
+
+![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/14.png)
+
 
 **GET: localhost:8000/api/places**
 
