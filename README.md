@@ -116,7 +116,7 @@ Finally, ckick on ```Save``` button.
 
 ![](https://raw.githubusercontent.com/CryptedSnow/rest-api-practical-test/refs/heads/main/public/img/10.png)
 
-18 - If you have doubt about the working of Laravel from Docker service, you can access:
+18 - If you have doubt about the working of ```Laravel``` from Docker, you can access:
 
 ```
 http://localhost:8000
@@ -344,7 +344,7 @@ http://localhost:8000/api/documentation
 {
     "name": "Gold Saucer",
     "state": "Square Enix",
-    "city": "Final Fantasy VII Rebirth" // Final Fantasy to Final Fantasy VII Rebirth
+    "city": "Final Fantasy VII Rebirth"
 }
 ```
 
