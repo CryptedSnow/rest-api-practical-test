@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class PlaceService implements PlaceInterface
 {
-    public function listPlaces(int $perPage = 5): LengthAwarePaginator
+    public function listPlaces(int $perPage = 10): LengthAwarePaginator
     {
         return Place::paginate($perPage);
     }
@@ -35,7 +35,7 @@ class PlaceService implements PlaceInterface
         return $place->delete();
     }
 
-    public function searchPlaceName(string $name, int $perPage = 5): LengthAwarePaginator
+    public function searchPlaceName(string $name, int $perPage = 10): LengthAwarePaginator
     {
         return Place::where('name', 'ILIKE', "%{$name}%")->paginate($perPage);
     }

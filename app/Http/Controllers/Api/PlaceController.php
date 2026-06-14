@@ -19,6 +19,15 @@ class PlaceController extends Controller
         path: '/places',
         summary: 'List all places',
         tags: ['Places'],
+        parameters: [
+            new OA\Parameter(
+                name: 'page',
+                in: 'query',
+                required: false,
+                description: 'Page number',
+                schema: new OA\Schema(type: 'integer', example: 1)
+            ),
+        ],
         responses: [
             new OA\Response(response: 200, description: 'All places retrieved'),
             new OA\Response(response: 404, description: 'No places found'),
@@ -175,7 +184,19 @@ class PlaceController extends Controller
         summary: 'Search places by name',
         tags: ['Places'],
         parameters: [
-            new OA\Parameter(name: 'name', in: 'query', required: true, schema: new OA\Schema(type: 'string')),
+            new OA\Parameter(
+                name: 'name',
+                in: 'query',
+                required: true,
+                schema: new OA\Schema(type: 'string')
+            ),
+            new OA\Parameter(
+                name: 'page',
+                in: 'query',
+                required: false,
+                description: 'Page number',
+                schema: new OA\Schema(type: 'integer', example: 1)
+            ),
         ],
         responses: [
             new OA\Response(response: 200, description: 'Results found'),
@@ -196,7 +217,7 @@ class PlaceController extends Controller
 
         if ($places->isEmpty()) {
             return response()->json([
-                'message' => "No places found using the name $namePlace."
+                'message' => "No places found using the name $namePlace or the requested page has no results."
             ], Response::HTTP_NOT_FOUND);
         }
 
