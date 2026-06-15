@@ -80,7 +80,7 @@
                         "description": "Place created"
                     },
                     "422": {
-                        "description": "Invalid data"
+                        "description": "Invalid data to request"
                     }
                 }
             }
@@ -156,6 +156,9 @@
                     },
                     "404": {
                         "description": "Place not found"
+                    },
+                    "422": {
+                        "description": "Invalid data to request"
                     }
                 }
             },

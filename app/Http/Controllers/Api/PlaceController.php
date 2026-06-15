@@ -35,7 +35,7 @@ class PlaceController extends Controller
     )]
     public function index(): AnonymousResourceCollection | JsonResponse
     {
-        $places = $this->placeInterface->listPlaces(5);
+        $places = $this->placeInterface->listPlaces(10);
 
         if ($places->isEmpty()) {
             return response()->json([
@@ -63,7 +63,7 @@ class PlaceController extends Controller
         ),
         responses: [
             new OA\Response(response: 201, description: 'Place created'),
-            new OA\Response(response: 422, description: 'Invalid data'),
+            new OA\Response(response: 422, description: 'Invalid data to request'),
         ]
     )]
     public function store(PlaceStoreRequest $request): JsonResponse
@@ -124,6 +124,7 @@ class PlaceController extends Controller
         responses: [
             new OA\Response(response: 202, description: 'Place updated'),
             new OA\Response(response: 404, description: 'Place not found'),
+            new OA\Response(response: 422, description: 'Invalid data to request'),
         ]
     )]
     public function update(PlaceUpdateRequest $request, int $id): JsonResponse
